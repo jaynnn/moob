@@ -1,0 +1,1 @@
+add_executable(moob main.cpp)
