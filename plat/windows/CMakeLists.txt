@@ -1,0 +1,1 @@
+add_library(WIN_APP win_base.hpp win_base.cpp)

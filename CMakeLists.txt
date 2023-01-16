@@ -36,3 +36,5 @@ include_directories("${PROJECT_SOURCE_DIR}/plat")
 include_directories("${PROJECT_SOURCE_DIR}/frame")
 
 add_subdirectory(game)
+add_subdirectory(frame)
+add_subdirectory(plat)

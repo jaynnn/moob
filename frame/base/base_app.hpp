@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <cmath>
 #include <cstdint>
 #include <string>
@@ -18,29 +19,27 @@
 #include <cstring>
 #include <filesystem>
 
+#include "frame/interface/app_interface.hpp"
+
 namespace moob {
     constexpr uint8_t kMouseBtn = 5;
     constexpr size_t kMaxVertex = 128;
+    constexpr int FAIL = 0;
+    constexpr int SUCC = 1;
 
-    enum kRet {
-        fail = 0,
-        succ = 1,
-    };
-
-    class BaseApp
+    class BaseApp : public AppInterface
     {
-    private:
-        
     public:
-        BaseApp();
-        ~BaseApp();
+        BaseApp() = default;
+        BaseApp(AppCfg& cfg) : app_config_(cfg) {}
+        virtual ~BaseApp();
+        virtual int Init();
+        virtual void Tick();
+        [[nodiscard]] bool IsQuit() const override;
+        void CreateMainWindow() override {}
+    protected:
+        AppCfg app_config_;
+    private:
+        bool is_quit_ = false;
     };
-    
-    BaseApp::BaseApp()
-    {
-    }
-    
-    BaseApp::~BaseApp()
-    {
-    }
 }

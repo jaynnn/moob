@@ -2,24 +2,25 @@
 
 #include <Windows.h>
 
-#include "plat_base.hpp"
+#include "frame/base/base_app.hpp"
 
 namespace moob {
-    class WinApp
+    class WinApp : public BaseApp
     {
     private:
+        static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message,
+                                          WPARAM wParam, LPARAM lParam);
         
     public:
-        WinApp();
-        ~WinApp();
+        using BaseApp::BaseApp;
+        int Init() override;
+        void Tick() override;
+        void CreateMainWindow() override;
+
+        
+    protected:
+        HINSTANCE hInstance_ = NULL;
+        HWND hwnd_ = NULL;
     };
-    
-    WinApp::WinApp()
-    {
-    }
-    
-    WinApp::~WinApp()
-    {
-    }
     
 }
