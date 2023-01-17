@@ -20,4 +20,3 @@ ENDIF(WIN32)
 configure_file(
     "${PROJECT_SOURCE_DIR}/plat/plat_app.h.in"
     "${PROJECT_SOURCE_DIR}/plat/plat_app.hpp")
-message(status, ${PLAT_INCLUDE_NAME})
