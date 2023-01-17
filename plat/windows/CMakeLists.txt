@@ -4,4 +4,4 @@ set (PLAT_SOURCE
                 gl_app.cpp
                 gl_app.hpp)
 
-add_library(PlatformInterface ${PLAT_SOURCE})
+add_library(PLAT_APP ${PLAT_SOURCE})
