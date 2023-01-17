@@ -1,23 +1,20 @@
 #pragma once
 
-#include "frame/base/base_app.hpp"
+#include <X11/X.h>
+#include <X11/Xlib.h>
 
-namespace X11
-{
-    #include <X11/X.h>
-    #include <X11/Xlib.h>
-}
+#include "frame/base/base_app.hpp"
 
 namespace moob {
     class LinuxApp : public BaseApp
     {
     private:
-		X11::Display*                display_ = nullptr;
-		X11::Window					 window_root_;
-		X11::Window					 window_;
-		X11::Colormap                color_map_;
-		X11::XSetWindowAttributes    set_window_attr_;
-        X11::XEvent                  event_;
+		Display*                display_ = nullptr;
+		Window					 window_root_;
+		Window					 window_;
+		Colormap                color_map_;
+		XSetWindowAttributes    set_window_attr_;
+        XEvent                  event_;
         int                          screen_;
         const char                   *msg_ = "linux window";
         

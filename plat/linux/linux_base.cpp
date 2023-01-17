@@ -3,7 +3,7 @@
 
 int moob::LinuxApp::Init()
 {
-
+   return 0;
 }
 void moob::LinuxApp::Tick()
 {
@@ -12,16 +12,23 @@ void moob::LinuxApp::Tick()
 void moob::LinuxApp::CreateMainWindow()
 {
 
-   display_ = X11::XOpenDisplay(NULL);
+   display_ = XOpenDisplay(NULL);
  
    screen_ = DefaultScreen(display_);
-   window_ = X11::XCreateSimpleWindow(display_, RootWindow(display_, screen_), 10, 10, 100, 100, 1,
+   window_ = XCreateSimpleWindow(display_, RootWindow(display_, screen_), 10, 10, 100, 100, 1,
                            BlackPixel(display_, screen_), WhitePixel(display_, screen_));
-   X11::XSelectInput(display_, window_, ExposureMask | KeyPressMask);
-   X11::XMapWindow(display_, window_);
+   XSelectInput(display_, window_, ExposureMask | KeyPressMask);
+   XMapWindow(display_, window_);
  
    while (1) {
+      XNextEvent(display_, &event_);
+      if (event_.type == Expose) {
+         XFillRectangle(display_, window_, DefaultGC(display_, screen_), 20, 20, 10, 10);
+         XDrawString(display_, window_, DefaultGC(display_, screen_), 10, 50, msg_, strlen(msg_));
+      }
+      if (event_.type == KeyPress)
+         break;
    }
  
-   X11::XCloseDisplay(display_);
+   XCloseDisplay(display_);
 }
