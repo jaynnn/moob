@@ -1,5 +1,6 @@
 IF(WIN32)
     add_subdirectory(windows)
+    set(PLAT_INCLUDE_NAME windows/win_base.hpp)
     message("add_subdirectory windows")
 ELSEIF(UNIX)
     IF(APPLE)
@@ -9,8 +10,14 @@ ELSEIF(UNIX)
         message("add_subdirectory bsd linux")
     ELSE()
         add_subdirectory(linux)
+        set(PLAT_INCLUDE_NAME linux/linux_base.hpp)
         message("add_subdirectory linux")
     ENDIF(APPLE)
 ELSE()
     add_subdirectory(empty)
 ENDIF(WIN32)
+
+configure_file(
+    "${PROJECT_SOURCE_DIR}/plat/plat_app.h.in"
+    "${PROJECT_SOURCE_DIR}/plat/plat_app.hpp")
+message(status, ${PLAT_INCLUDE_NAME})

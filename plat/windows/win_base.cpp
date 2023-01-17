@@ -3,17 +3,17 @@
 
 #include "plat/windows/win_base.hpp"
 
-int moob::WinApp::Init()
+int moob::PlatApp::Init()
 {
     return 0;
 }
 
-void moob::WinApp::Tick()
+void moob::PlatApp::Tick()
 {
 
 }
 
-void moob::WinApp::CreateMainWindow()
+void moob::PlatApp::CreateMainWindow()
 {
     hInstance_ = GetModuleHandle(NULL);
 
@@ -56,7 +56,7 @@ void moob::WinApp::CreateMainWindow()
 }
 
 
-LRESULT CALLBACK moob::WinApp::WindowProc(HWND hWnd, UINT message,
+LRESULT CALLBACK moob::PlatApp::WindowProc(HWND hWnd, UINT message,
                                     WPARAM wParam, LPARAM lParam) {
     LRESULT ret = 0;
     return ret;

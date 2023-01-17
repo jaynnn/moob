@@ -6,7 +6,7 @@
 #include "frame/base/base_app.hpp"
 
 namespace moob {
-    class LinuxApp : public BaseApp
+    class PlatApp : public BaseApp
     {
     private:
 		Display*                display_ = nullptr;

@@ -5,7 +5,7 @@
 #include "frame/base/base_app.hpp"
 
 namespace moob {
-    class WinApp : public BaseApp
+    class PlatApp : public BaseApp
     {
     private:
         static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message,
