@@ -15,9 +15,11 @@ namespace moob {
 		X11::Display*                display_ = nullptr;
 		X11::Window					 window_root_;
 		X11::Window					 window_;
-		X11::XVisualInfo*            visual_info_;
 		X11::Colormap                color_map_;
 		X11::XSetWindowAttributes    set_window_attr_;
+        X11::XEvent                  event_;
+        int                          screen_;
+        const char                   *msg_ = "linux window";
         
     public:
         using BaseApp::BaseApp;
