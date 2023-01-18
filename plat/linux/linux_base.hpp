@@ -9,14 +9,14 @@ namespace moob {
     class PlatApp : public BaseApp
     {
     private:
-		Display*                display_ = nullptr;
-		Window					 window_root_;
-		Window					 window_;
-		Colormap                color_map_;
-		XSetWindowAttributes    set_window_attr_;
-        XEvent                  event_;
-        int                          screen_;
-        const char                   *msg_ = "linux window";
+		Display*                    display_ = nullptr;
+		Window					    window_root_;
+		Window					    window_;
+		Colormap                    color_map_;
+		XSetWindowAttributes        set_window_attr_;
+        XEvent                      event_;
+        int                         screen_;
+        const char                  *msg_ = "linux window";
         
     public:
         using BaseApp::BaseApp;

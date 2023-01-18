@@ -8,8 +8,9 @@ namespace moob {
     class PlatApp : public BaseApp
     {
     private:
-        static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message,
-                                          WPARAM wParam, LPARAM lParam);
+        static LRESULT CALLBACK WindowProc(HWND hWnd, UINT msg,
+            WPARAM wParam, LPARAM lParam);
+        void OnSize(HWND hwnd, UINT flag, int width, int height);
         
     public:
         using BaseApp::BaseApp;
