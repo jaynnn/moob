@@ -3,8 +3,7 @@
 
 #include "plat/windows/win_base.hpp"
 
-void moob::WinApp::Tick()
-{
+void moob::WinApp::Tick() {
     MSG msg;
     if (GetMessage(&msg, NULL, 0, 0) > 0) {
         TranslateMessage(&msg);
@@ -12,8 +11,7 @@ void moob::WinApp::Tick()
     }
 }
 
-void moob::WinApp::CreateMainWindow()
-{
+void moob::WinApp::CreateMainWindow() {
     hInstance_ = GetModuleHandle(NULL);
 
     WNDCLASSEX wc = {};
@@ -40,8 +38,7 @@ void moob::WinApp::CreateMainWindow()
 
 }
 
-void moob::WinApp::OnSize(HWND hwnd, UINT flag, int width, int height)
-{
+void moob::WinApp::OnSize(HWND hwnd, UINT flag, int width, int height) {
 
 }
 

@@ -1,16 +1,13 @@
 #include "frame/base/base_app.hpp"
 
-moob::BaseApp::~BaseApp()
-{
+moob::BaseApp::~BaseApp() {
 }
 
-int moob::BaseApp::Init()
-{
+int moob::BaseApp::Init() {
     return 0;
 }
 
-void moob::BaseApp::Tick()
-{
+void moob::BaseApp::Tick() {
 
 }
 

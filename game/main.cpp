@@ -2,8 +2,7 @@
 #include "common/config.hpp"
 #include "plat/plat_app.hpp"
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
     int ret;
 
     moob::AppCfg config(1920);

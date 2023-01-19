@@ -1,7 +1,6 @@
 #include "frame/base/engine.hpp"
 
-moob::Engine::Engine()
-{
+moob::Engine::Engine() {
 }
 
 moob::Engine::Engine(WindowCfg cfg, std::string app_name) 
@@ -10,17 +9,13 @@ moob::Engine::Engine(WindowCfg cfg, std::string app_name)
     app_name = app_name;
 }
 
-moob::Engine::~Engine()
-{
+moob::Engine::~Engine() {
 }
 
-int moob::Engine::Init()
-{
+int moob::Engine::Init() {
 }
-bool moob::Engine::IsQuit()
-{
+bool moob::Engine::IsQuit() {
     return is_quit_;
 }
-void moob::Engine::Tick()
-{
+void moob::Engine::Tick() {
 }
