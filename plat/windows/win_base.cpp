@@ -3,12 +3,7 @@
 
 #include "plat/windows/win_base.hpp"
 
-int moob::PlatApp::Init()
-{
-    return 0;
-}
-
-void moob::PlatApp::Tick()
+void moob::WinApp::Tick()
 {
     MSG msg;
     if (GetMessage(&msg, NULL, 0, 0) > 0) {
@@ -17,7 +12,7 @@ void moob::PlatApp::Tick()
     }
 }
 
-void moob::PlatApp::CreateMainWindow()
+void moob::WinApp::CreateMainWindow()
 {
     hInstance_ = GetModuleHandle(NULL);
 
@@ -45,22 +40,23 @@ void moob::PlatApp::CreateMainWindow()
 
 }
 
-void moob::PlatApp::OnSize(HWND hwnd, UINT flag, int width, int height)
+void moob::WinApp::OnSize(HWND hwnd, UINT flag, int width, int height)
 {
 
 }
 
-LRESULT CALLBACK moob::PlatApp::WindowProc(HWND hwnd, UINT msg,
-                                    WPARAM wParam, LPARAM lParam) {
+LRESULT CALLBACK moob::WinApp::WindowProc(HWND hwnd, UINT msg,
+                                    WPARAM wParam, LPARAM lParam) 
+{
     LRESULT result = 0;
 
-    PlatApp* pThis = NULL;
+    WinApp* pThis = NULL;
     if (msg == WM_NCCREATE) {
         CREATESTRUCT *pCreate = reinterpret_cast<CREATESTRUCT*>(lParam);
-        pThis = reinterpret_cast<PlatApp*>(pCreate->lpCreateParams);
+        pThis = reinterpret_cast<WinApp*>(pCreate->lpCreateParams);
         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pThis);
     } else {
-        pThis = reinterpret_cast<PlatApp*>(
+        pThis = reinterpret_cast<WinApp*>(
             GetWindowLongPtr(hwnd, GWLP_USERDATA));
     }
 
@@ -80,11 +76,17 @@ LRESULT CALLBACK moob::PlatApp::WindowProc(HWND hwnd, UINT msg,
 
                 EndPaint(hwnd, &ps);
             }
+            break;
         case WM_CLOSE:
             if (MessageBox(hwnd, "Really quit?", "My application", MB_OKCANCEL) == IDOK) {
                 DestroyWindow(hwnd);
             }
             return 0;
+            break;
+        case WM_KEYDOWN:
+            break;
+        case WM_KEYUP:
+            break;
         }
     } else {
         return DefWindowProc(hwnd, msg, wParam, lParam);

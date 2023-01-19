@@ -1,15 +1,15 @@
 #include "plat/linux/linux_base.hpp"
 
 
-int moob::PlatApp::Init()
+int moob::LinuxApp::Init()
 {
    return 0;
 }
-void moob::PlatApp::Tick()
+void moob::LinuxApp::Tick()
 {
 
 }
-void moob::PlatApp::CreateMainWindow()
+void moob::LinuxApp::CreateMainWindow()
 {
 
    display_ = XOpenDisplay(NULL);

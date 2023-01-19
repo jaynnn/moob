@@ -4,8 +4,9 @@
 
 #include "frame/base/base_app.hpp"
 
-namespace moob {
-    class PlatApp : public BaseApp
+namespace moob 
+{
+    class WinApp : public BaseApp
     {
     private:
         static LRESULT CALLBACK WindowProc(HWND hWnd, UINT msg,
@@ -14,7 +15,6 @@ namespace moob {
         
     public:
         using BaseApp::BaseApp;
-        int Init() override;
         void Tick() override;
         void CreateMainWindow() override;
 

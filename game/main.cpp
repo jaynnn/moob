@@ -7,7 +7,7 @@ int main(int argc, char **argv)
     int ret;
 
     moob::AppCfg config(1920);
-    moob::PlatApp app(config);
+    PLAT_APP app(config);
     app.CreateMainWindow();
     ret = app.Init();
     
