@@ -11,13 +11,18 @@ namespace moob
     using WinApp::WinApp;
 
     private:
-        ID2D1Factory            *pFactory;
-        ID2D1HwndRenderTarget   *pRenderTarget;
-        ID2D1SolidColorBrush    *pBrush;
-        D2D1_ELLIPSE            ellipse;
+        ID2D1Factory            *pFactory_;
+        ID2D1HwndRenderTarget   *pRender_target_;
+        ID2D1SolidColorBrush    *pBrush_;
+        D2D1_ELLIPSE            ellipse_;
+        void CalculateLayout();
+        HRESULT CreateGraphicsResources();
+        void DiscardGraphicsResources();
+        void OnPaint();
+        void Resize();
+        LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
         
     public:
-
-        void CreateMainWindow() final;
+        bool CreateMainWindow() final;
     };
 }

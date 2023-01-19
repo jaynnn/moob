@@ -4,8 +4,7 @@
 
 #include "frame/base/base_app.hpp"
 
-namespace moob 
-{
+namespace moob {
     class WinApp : public BaseApp
     {
     private:
@@ -16,10 +15,12 @@ namespace moob
     public:
         using BaseApp::BaseApp;
         void Tick() override;
-        void CreateMainWindow() override;
+        bool CreateMainWindow() override;
 
         
     protected:
+        virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
+        HWND Window() const;
         HINSTANCE hInstance_ = NULL;
         HWND hwnd_ = NULL;
     };

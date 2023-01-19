@@ -11,7 +11,7 @@ void moob::WinApp::Tick() {
     }
 }
 
-void moob::WinApp::CreateMainWindow() {
+bool moob::WinApp::CreateMainWindow() {
     hInstance_ = GetModuleHandle(NULL);
 
     WNDCLASSEX wc = {};
@@ -33,9 +33,14 @@ void moob::WinApp::CreateMainWindow() {
         WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
         app_config_.screen_w_, app_config_.screen_h_, NULL,
         NULL, hInstance_, this);
-
+    
     ShowWindow(hwnd_, SW_SHOW);
 
+    return (hwnd_ ? true : false);
+}
+
+HWND moob::WinApp::Window() const {
+    return hwnd_; 
 }
 
 void moob::WinApp::OnSize(HWND hwnd, UINT flag, int width, int height) {
@@ -43,10 +48,7 @@ void moob::WinApp::OnSize(HWND hwnd, UINT flag, int width, int height) {
 }
 
 LRESULT CALLBACK moob::WinApp::WindowProc(HWND hwnd, UINT msg,
-                                    WPARAM wParam, LPARAM lParam) 
-{
-    LRESULT result = 0;
-
+                                    WPARAM wParam, LPARAM lParam) {
     WinApp* pThis = NULL;
     if (msg == WM_NCCREATE) {
         CREATESTRUCT *pCreate = reinterpret_cast<CREATESTRUCT*>(lParam);
@@ -58,36 +60,38 @@ LRESULT CALLBACK moob::WinApp::WindowProc(HWND hwnd, UINT msg,
     }
 
     if (pThis) {
-        switch (msg) {
-        case WM_SIZE: {
-                int width = LOWORD(lParam);
-                int height = HIWORD(lParam);
-
-                pThis->OnSize(hwnd, (UINT)wParam, width, height);
-            }
-            break;
-        case WM_PAINT: {
-                PAINTSTRUCT ps;
-                HDC hdc = BeginPaint(hwnd, &ps);
-                FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+10));
-
-                EndPaint(hwnd, &ps);
-            }
-            break;
-        case WM_CLOSE:
-            if (MessageBox(hwnd, "Really quit?", "My application", MB_OKCANCEL) == IDOK) {
-                DestroyWindow(hwnd);
-            }
-            return 0;
-            break;
-        case WM_KEYDOWN:
-            break;
-        case WM_KEYUP:
-            break;
-        }
+        return pThis->HandleMessage(msg, wParam, lParam);
     } else {
         return DefWindowProc(hwnd, msg, wParam, lParam);
     }
+}
 
-    return result;
+LRESULT moob::WinApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) {
+    switch (msg) {
+    case WM_SIZE: {
+            int width = LOWORD(lParam);
+            int height = HIWORD(lParam);
+            OnSize(hwnd_, (UINT)wParam, width, height);
+        }
+        break;
+    case WM_PAINT: {
+            PAINTSTRUCT ps;
+            HDC hdc = BeginPaint(hwnd_, &ps);
+            FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+10));
+            EndPaint(hwnd_, &ps);
+        }
+        break;
+    case WM_CLOSE:
+        if (MessageBox(hwnd_, "Really quit?", "My application", MB_OKCANCEL) == IDOK) {
+            DestroyWindow(hwnd_);
+        }
+        return 0;
+        break;
+    case WM_KEYDOWN:
+        break;
+    case WM_KEYUP:
+        break;
+    }
+
+    return DefWindowProc(hwnd_, msg, wParam, lParam);
 }

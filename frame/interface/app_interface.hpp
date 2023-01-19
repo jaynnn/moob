@@ -10,6 +10,6 @@ namespace moob {
     public:
         virtual ~AppInterface() = default;
         [[nodiscard]] virtual bool IsQuit() const = 0;
-        virtual void CreateMainWindow() = 0;
+        virtual bool CreateMainWindow() = 0;
     };
 }

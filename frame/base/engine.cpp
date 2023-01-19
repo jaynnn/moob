@@ -3,8 +3,7 @@
 moob::Engine::Engine() {
 }
 
-moob::Engine::Engine(WindowCfg cfg, std::string app_name) 
-{
+moob::Engine::Engine(WindowCfg cfg, std::string app_name) {
     cfg = cfg;
     app_name = app_name;
 }

@@ -7,7 +7,7 @@ int moob::LinuxApp::Init() {
 void moob::LinuxApp::Tick() {
 
 }
-void moob::LinuxApp::CreateMainWindow() {
+bool moob::LinuxApp::CreateMainWindow() {
 
    display_ = XOpenDisplay(NULL);
  
