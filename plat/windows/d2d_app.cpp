@@ -123,6 +123,8 @@ LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_SIZE:
         Resize();
         return 0;
+    case WM_NCCREATE:
+        return true;
     }
     return DefWindowProc(hwnd_, msg, wParam, lParam);
 }

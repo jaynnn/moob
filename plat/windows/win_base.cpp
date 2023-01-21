@@ -4,37 +4,40 @@
 #include "plat/windows/win_base.hpp"
 
 void moob::WinApp::Tick() {
-    MSG msg;
-    if (GetMessage(&msg, NULL, 0, 0) > 0) {
-        TranslateMessage(&msg);
-        DispatchMessage(&msg);
+    MSG msg = {};
+    BOOL ret = FALSE;
+    if ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
+        if (ret < 0) {
+            // deal error
+        }
+        else {
+            TranslateMessage(&msg);
+            DispatchMessage(&msg);
+        }
     }
 }
 
 bool moob::WinApp::CreateMainWindow() {
     hInstance_ = GetModuleHandle(NULL);
 
-    WNDCLASSEX wc = {};
-
-    ZeroMemory(&wc, sizeof(WNDCLASSEX));
-
+    WNDCLASSEX wc = {0};
     wc.cbSize = sizeof(WNDCLASSEX);
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = hInstance_;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
-    wc.lpszClassName = _T("MoobEngine");
+    wc.lpszClassName = "MoobEngine";
 
     RegisterClassEx(&wc);
 
     hwnd_ = CreateWindowEx(
-        0, _T("MoobEngine"), app_config_.appname_, //TODO
+        0, "MoobEngine", app_config_.appname_,
         WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
         app_config_.screen_w_, app_config_.screen_h_, NULL,
         NULL, hInstance_, this);
     
-    ShowWindow(hwnd_, SW_SHOW);
+    ShowWindow(hwnd_, SW_SHOWDEFAULT);
 
     return (hwnd_ ? true : false);
 }

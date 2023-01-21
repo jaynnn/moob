@@ -11,9 +11,9 @@ namespace moob
     using WinApp::WinApp;
 
     private:
-        ID2D1Factory            *pFactory_;
-        ID2D1HwndRenderTarget   *pRender_target_;
-        ID2D1SolidColorBrush    *pBrush_;
+        ID2D1Factory            *pFactory_ = NULL;
+        ID2D1HwndRenderTarget   *pRender_target_ = NULL;
+        ID2D1SolidColorBrush    *pBrush_ = NULL;
         D2D1_ELLIPSE            ellipse_;
         void CalculateLayout();
         HRESULT CreateGraphicsResources();
