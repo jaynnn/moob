@@ -18,11 +18,11 @@ namespace moob {
         rgba_(rgba),
         appname_(appname) {};
 
-        uint32_t screen_w_{1920};
-        uint32_t screen_h_{1080};
-        uint32_t pixel_w_{4};
-        uint32_t pixel_h_{4};
-        uint32_t rgba_{0xFF000000};
+        uint32_t screen_w_;
+        uint32_t screen_h_;
+        uint32_t pixel_w_;
+        uint32_t pixel_h_;
+        uint32_t rgba_;
         const char *appname_;
     };
 }

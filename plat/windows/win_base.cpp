@@ -20,20 +20,25 @@ void moob::WinApp::Tick() {
 bool moob::WinApp::CreateMainWindow() {
     hInstance_ = GetModuleHandle(NULL);
 
-    WNDCLASSEX wc = {0};
-    wc.cbSize = sizeof(WNDCLASSEX);
-    wc.style = CS_HREDRAW | CS_VREDRAW;
-    wc.lpfnWndProc = WindowProc;
-    wc.hInstance = hInstance_;
-    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-    wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
-    wc.lpszClassName = "MoobEngine";
+    WNDCLASSEX wcex = {0};
+    wcex.cbSize         = sizeof(WNDCLASSEX);
+    wcex.style          = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc    = WindowProc;
+    wcex.cbClsExtra     = 0;
+    wcex.cbWndExtra     = 0;
+    wcex.hInstance      = hInstance_;
+    wcex.hIcon          = LoadIcon(hInstance_, MAKEINTRESOURCE(IDI_APPLICATION));
+    wcex.hCursor        = LoadCursor(NULL, IDC_ARROW);
+    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);  
+    wcex.lpszMenuName   = NULL;
+    wcex.lpszClassName  = "MoobEngine";
+    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 
-    RegisterClassEx(&wc);
+    RegisterClassEx(&wcex);
 
     hwnd_ = CreateWindowEx(
         0, "MoobEngine", app_config_.appname_,
-        WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
+        WS_MAXIMIZE, CW_USEDEFAULT, CW_USEDEFAULT,
         app_config_.screen_w_, app_config_.screen_h_, NULL,
         NULL, hInstance_, this);
     
