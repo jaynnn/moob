@@ -1,8 +1,7 @@
 #pragma once
 
-#include <d2d1.h>
-
 #include "plat/windows/win_base.hpp"
+#include "render_api/d2d_api.hpp"
 
 namespace moob 
 {
@@ -11,15 +10,7 @@ namespace moob
     using WinApp::WinApp;
 
     private:
-        ID2D1Factory            *pFactory_ = NULL;
-        ID2D1HwndRenderTarget   *pRender_target_ = NULL;
-        ID2D1SolidColorBrush    *pBrush_ = NULL;
-        D2D1_ELLIPSE            ellipse_;
-        void CalculateLayout();
-        HRESULT CreateGraphicsResources();
-        void DiscardGraphicsResources();
-        void OnPaint();
-        void Resize();
+        D2dApi d2d_;
         LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
         
     public:
