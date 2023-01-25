@@ -8,6 +8,6 @@ elseif(UNIX)
 else()
 endif()
 
-add_library(RENDER_API ${RENDER_API_SOURCE})
+add_library(RENDER_API_LIB ${RENDER_API_SOURCE})
 
-target_link_libraries(PLAT_APP d2d1)
+target_link_libraries(RENDER_API_LIB d2d1)

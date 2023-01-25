@@ -7,3 +7,4 @@ set (PLAT_SOURCE
                 d2d_app.cpp)
 
 add_library(PLAT_APP ${PLAT_SOURCE})
+target_link_libraries(PLAT_APP RENDER_API_LIB)

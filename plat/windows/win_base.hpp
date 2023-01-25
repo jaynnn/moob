@@ -16,7 +16,7 @@ namespace moob {
         using BaseApp::BaseApp;
         void Tick() override;
         bool CreateMainWindow() override;
-
+        void* GetHwnd() { return hwnd_; };
         
     protected:
         virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
