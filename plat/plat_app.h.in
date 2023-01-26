@@ -2,4 +2,3 @@
 
 #include "plat/@PLAT_INCLUDE_NAME@"
 #define PLAT_APP @GRAPHICS_CLASS@
-#define MOOB_OK1(f) () // [>=0]:ok  [<0]:fail  
