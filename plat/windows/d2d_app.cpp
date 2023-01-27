@@ -18,17 +18,15 @@ LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
     {
     case WM_CREATE:
         return d2d_.OnCreatFactory() ? 0 : -1;
-    case WM_DESTROY:
-        d2d_.OnDestory();
-        return 1;
-
     case WM_PAINT:
         d2d_.OnPaint();
-        return 1;
-
+        break;
     case WM_SIZE:
         d2d_.OnResize();
-        return 1;
+        break;
+    case WM_DESTROY:
+        d2d_.OnDestory();
+        break;
     case WM_NCCREATE:
         return 1;
     }

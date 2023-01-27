@@ -15,7 +15,5 @@ namespace moob
         
     public:
         bool CreateMainWindow() final;
-    
-    friend class D2dApi;
     };
 }
