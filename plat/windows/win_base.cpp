@@ -3,10 +3,10 @@
 
 #include "plat/windows/win_base.hpp"
 
-void moob::WinApp::Tick() {
+void moob::WinApp::PlatTick() {
     MSG msg = {};
     BOOL ret = FALSE;
-    if ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
+    while ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
         if (ret < 0) {
             // deal error
         }

@@ -3,16 +3,18 @@
 #include "plat/plat_app.hpp"
 
 int main(int argc, char **argv) {
-    int ret;
 
     moob::AppCfg config(1920);
-    PLAT_APP app(config);
+    moob::PlatApp app(config);
+
     app.CreateMainWindow();
     ret = app.Init();
+
+    std::thread t = app.MainThread();
     
-    while (!app.IsQuit()) {
-        app.Tick();
-    }
-    
+    app.PlatTick();
+
+    t.join();
+
     return ret;
 }

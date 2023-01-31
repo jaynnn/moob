@@ -1,4 +1,10 @@
 #pragma once
 
+#include "common/config.hpp"
 #include "plat/@PLAT_INCLUDE_NAME@"
-#define PLAT_APP @GRAPHICS_CLASS@
+
+namespace moob {
+    class PlatApp : @GRAPHICS_CLASS@ {
+
+    };
+}

@@ -14,7 +14,7 @@ namespace moob {
         
     public:
         using BaseApp::BaseApp;
-        void Tick() override;
+        void PlatTick() override;
         bool CreateMainWindow() override;
         void* GetHwnd() { return hwnd_; };
         
