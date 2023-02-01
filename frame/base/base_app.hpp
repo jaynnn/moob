@@ -36,6 +36,7 @@ namespace moob {
         virtual int Init();
         virtual void Tick();
         [[nodiscard]] bool IsQuit() const override;
+        virtual void PlatTick() = 0;
         bool CreateMainWindow() override { return true; };
     protected:
         AppCfg app_config_;

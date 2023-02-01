@@ -2,11 +2,13 @@
 
 #include <iostream>
 
+#include "frame/base/sprite.hpp"
+
 namespace moob {
     constexpr uint32_t kDefaultAlpha = 0xFF;
     constexpr uint32_t kDefaultRgba = (kDefaultAlpha << 24);
 
-    class Pixel
+    class Pixel : public Sprite
     {
     private:
         uint32_t rgba_;

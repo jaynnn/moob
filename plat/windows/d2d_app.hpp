@@ -17,7 +17,7 @@ namespace moob
         void ThreadEnd();
         
     public:
-        bool CreateMainWindow() final;
+        virtual bool CreateMainWindow();
         virtual std::thread MainThread();
     };
 }

@@ -1,10 +1,10 @@
 #windows
 #set(WIN_GRAPHICS_LIB_BASE moob::WinApp)
-set(WIN_GRAPHICS_LIB_D2D moob::D2dApp)
+set(WIN_GRAPHICS_LIB_D2D D2dApp)
 #set(WIN_GRAPHICS_LIB_OPENGL moob::GlApp)
 
 #set(LINUX_GRAPHICS_LIB_BASE moob::LinuxApp)
-set(LINUX_GRAPHICS_LIB_OPENGL moob::GlApp)
+set(LINUX_GRAPHICS_LIB_OPENGL GlApp)
 
 if(WIN32)
     add_subdirectory(windows)
