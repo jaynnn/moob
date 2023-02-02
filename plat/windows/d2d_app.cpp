@@ -35,7 +35,7 @@ LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
 
 std::thread moob::D2dApp::MainThread()
 {
-    std::thread t = std::thread(&ThreadLoop, this);
+    std::thread t = std::thread(&moob::D2dApp::ThreadLoop, this);
     return t;
 }
 
@@ -50,7 +50,7 @@ void moob::D2dApp::ThreadLoop()
 
 bool moob::D2dApp::ThreadStart()
 {
-
+    return true;
 }
 
 void moob::D2dApp::ThreadEnd()
