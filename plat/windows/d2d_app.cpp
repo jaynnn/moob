@@ -1,6 +1,5 @@
 #include "plat/windows/d2d_app.hpp"
 
-
 bool moob::D2dApp::CreateMainWindow() {
 
     auto func = [this]() -> HWND {
@@ -17,20 +16,21 @@ LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
     switch (msg)
     {
     case WM_CREATE:
-        return d2d_.OnCreatFactory() ? 0 : -1;
+        if (FAILED(d2d_.OnCreatFactory()))
+            return -1;
+        return 0;
     case WM_PAINT:
-        d2d_.OnPaint();
-        break;
+         d2d_.OnPaint();
+         return 0;
     case WM_SIZE:
         d2d_.OnResize();
-        break;
+        return 0;
     case WM_DESTROY:
         d2d_.OnDestory();
-        break;
-    case WM_NCCREATE:
-        return 1;
+        return 0;
+    default:
+        return DefWindowProc(hwnd_, msg, wParam, lParam);
     }
-    return DefWindowProc(hwnd_, msg, wParam, lParam);
 }
 
 std::thread moob::D2dApp::MainThread()

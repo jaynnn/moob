@@ -19,7 +19,7 @@ namespace moob {
         void* GetHwnd() { return hwnd_; };
         
     protected:
-        virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
+        virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
         HWND Window() const;
         HINSTANCE hInstance_ = NULL;
         HWND hwnd_ = NULL;

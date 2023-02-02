@@ -6,7 +6,7 @@
 void moob::WinApp::PlatTick() {
     MSG msg = {};
     BOOL ret = FALSE;
-    while ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
+    if ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
         if (ret < 0) {
             // deal error
         }
@@ -27,18 +27,18 @@ bool moob::WinApp::CreateMainWindow() {
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance_;
-    wcex.hIcon          = LoadIcon(hInstance_, MAKEINTRESOURCE(IDI_APPLICATION));
+    // wcex.hIcon          = LoadIcon(hInstance_, MAKEINTRESOURCE(IDI_APPLICATION));
     wcex.hCursor        = LoadCursor(NULL, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);  
     wcex.lpszMenuName   = NULL;
     wcex.lpszClassName  = "MoobEngine";
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
+    // wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 
     RegisterClassEx(&wcex);
 
     hwnd_ = CreateWindowEx(
         0, "MoobEngine", app_config_.appname_,
-        WS_MAXIMIZE, CW_USEDEFAULT, CW_USEDEFAULT,
+        WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
         app_config_.screen_w_, app_config_.screen_h_, NULL,
         NULL, hInstance_, this);
     
@@ -62,6 +62,7 @@ LRESULT CALLBACK moob::WinApp::WindowProc(HWND hwnd, UINT msg,
         CREATESTRUCT *pCreate = reinterpret_cast<CREATESTRUCT*>(lParam);
         pThis = reinterpret_cast<WinApp*>(pCreate->lpCreateParams);
         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pThis);
+        pThis->hwnd_ = hwnd;
     } else {
         pThis = reinterpret_cast<WinApp*>(
             GetWindowLongPtr(hwnd, GWLP_USERDATA));

@@ -4,7 +4,7 @@
 
 class Sprite
 {
-private:
+protected:
     uint32_t x;
     uint32_t y;
 public:

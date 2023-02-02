@@ -6,7 +6,7 @@ namespace moob {
     struct AppCfg
     {
         explicit AppCfg(
-            uint32_t screen_w = 1920, uint32_t screen_h = 1080,
+            uint32_t screen_w = 800, uint32_t screen_h = 600,
             uint32_t pixel_w = 4, uint32_t pixel_h = 4,
             uint32_t rgba = 0xFF000000,
             const char *appname = "MOOB"
