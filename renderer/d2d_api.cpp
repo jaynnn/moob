@@ -44,6 +44,8 @@ HRESULT moob::D2dApi::CreateGraphicsResources()
 
             if (SUCCEEDED(hr))
             {
+                const D2D1_COLOR_F color1 = D2D1::ColorF(0.0f, 0.0f, 0);
+                hr = pRender_target_->CreateSolidColorBrush(color1, &pStroke_);
                 CalculateLayout();
             }
         }
@@ -55,6 +57,45 @@ void moob::D2dApi::DiscardGraphicsResources()
 {
     SafeRelease(&pRender_target_);
     SafeRelease(&pBrush_);
+}
+
+void moob::D2dApi::DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth)
+{
+    pRender_target_->SetTransform(
+        D2D1::Matrix3x2F::Rotation(fAngle, ellipse_.point)
+            );
+
+    // endPoint defines one end of the hand.
+    D2D_POINT_2F endPoint = D2D1::Point2F(
+        ellipse_.point.x,
+        ellipse_.point.y - (ellipse_.radiusY * fHandLength)
+        );
+
+    // Draw a line from the center of the ellipse to endPoint.
+    pRender_target_->DrawLine(
+        ellipse_.point, endPoint, pStroke_, fStrokeWidth);
+}
+
+void moob::D2dApi::RenderScene()
+{
+    pRender_target_->Clear(D2D1::ColorF(D2D1::ColorF::SkyBlue));
+
+    pRender_target_->FillEllipse(ellipse_, pBrush_);
+    pRender_target_->DrawEllipse(ellipse_, pBrush_);
+
+    // Draw hands
+    SYSTEMTIME time;
+    GetLocalTime(&time);
+
+    // 60 minutes = 30 degrees, 1 minute = 0.5 degree
+    const float fHourAngle = (360.0f / 12) * (time.wHour) + (time.wMinute * 0.5f);
+    const float fMinuteAngle =(360.0f / 60) * (time.wMinute);
+
+    DrawClockHand(0.6f,  fHourAngle,   6);
+    DrawClockHand(0.85f, fMinuteAngle, 4);
+
+    // Restore the identity transformation.
+    pRender_target_->SetTransform( D2D1::Matrix3x2F::Identity() );
 }
 
 bool moob::D2dApi::OnCreatFactory() {
@@ -81,8 +122,7 @@ void moob::D2dApi::OnPaint()
      
         pRender_target_->BeginDraw();
 
-        pRender_target_->Clear( D2D1::ColorF(D2D1::ColorF::SkyBlue) );
-        pRender_target_->FillEllipse(ellipse_, pBrush_);
+        RenderScene();
 
         hr = pRender_target_->EndDraw();
         if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)

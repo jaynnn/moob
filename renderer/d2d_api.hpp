@@ -10,6 +10,7 @@ namespace moob {
         ID2D1Factory            *pFactory_;
         ID2D1HwndRenderTarget   *pRender_target_;
         ID2D1SolidColorBrush    *pBrush_;
+        ID2D1SolidColorBrush    *pStroke_;
         D2D1_ELLIPSE            ellipse_ = {0};
 
         std::function<HWND()>   pHwndFunc_;
@@ -18,8 +19,10 @@ namespace moob {
         void CalculateLayout();
         HRESULT CreateGraphicsResources();
         void DiscardGraphicsResources();
+        void DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth);
+        void RenderScene();
     public:
-        D2dApi() : pFactory_(NULL), pRender_target_(NULL), pBrush_(NULL) {};
+        D2dApi() : pFactory_(NULL), pRender_target_(NULL), pBrush_(NULL), pStroke_(NULL) {} ;
         ~D2dApi() {};
 
         void SetGetHwndFunc(std::function<HWND()> func) { pHwndFunc_ = func; };
