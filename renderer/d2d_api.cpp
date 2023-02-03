@@ -58,8 +58,10 @@ void moob::D2dApi::DiscardGraphicsResources()
 }
 
 bool moob::D2dApi::OnCreatFactory() {
-    return D2D1CreateFactory(
-                D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory_);
+    HRESULT ret = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory_);
+    if (FAILED(ret))
+        return false;
+    return true;
 }
 
 void moob::D2dApi::OnDestory() {

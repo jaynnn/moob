@@ -5,15 +5,9 @@
 
 void moob::WinApp::PlatTick() {
     MSG msg = {};
-    BOOL ret = FALSE;
-    if ((ret = GetMessage(&msg, NULL, 0, 0)) != 0) {
-        if (ret < 0) {
-            // deal error
-        }
-        else {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
+    while (GetMessage(&msg, NULL, 0, 0) > 0) {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
     }
 }
 
@@ -43,6 +37,7 @@ bool moob::WinApp::CreateMainWindow() {
         NULL, hInstance_, this);
     
     ShowWindow(hwnd_, SW_SHOWDEFAULT);
+	UpdateWindow(hwnd_);
 
     return (hwnd_ ? true : false);
 }
