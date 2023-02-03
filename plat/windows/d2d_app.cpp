@@ -8,6 +8,7 @@ bool moob::D2dApp::CreateMainWindow() {
     d2d_.SetGetHwndFunc(func);
 
     bool ret = WinApp::CreateMainWindow();
+    
     return ret;
 }
 
@@ -16,7 +17,7 @@ LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
     switch (msg)
     {
     case WM_CREATE:
-        if (FAILED(d2d_.OnCreatFactory()))
+        if (!d2d_.OnCreatFactory())
             return -1;
         return 0;
     case WM_PAINT:
@@ -28,6 +29,7 @@ LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_DESTROY:
         d2d_.OnDestory();
         return 0;
+
     default:
         return DefWindowProc(hwnd_, msg, wParam, lParam);
     }
