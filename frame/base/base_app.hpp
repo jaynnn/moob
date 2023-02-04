@@ -33,18 +33,29 @@ namespace moob {
         BaseApp() = default;
         BaseApp(AppCfg& cfg) : app_config_(cfg) {}
         virtual ~BaseApp();
+        
+        [[nodiscard]] bool IsQuit() const override;
+
+        bool CreateMainWindow() override { return true; };
         virtual int Init();
         virtual void Tick();
-        [[nodiscard]] bool IsQuit() const override;
         virtual void PlatTick() = 0;
-        bool CreateMainWindow() override { return true; };
         std::thread MainThread();
+
+        int32_t ScreenWidth();
+        int32_t ScreenHeight();
+
+        template <typename T>
+        void RegistMgr(T mgr);
     protected:
         AppCfg app_config_;
     private:
         void ThreadLoop();
         bool ThreadStart();
         void ThreadEnd();
+
         bool is_quit_ = false;
+
+        
     };
 }
