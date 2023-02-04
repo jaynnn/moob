@@ -16,7 +16,10 @@ std::thread moob::BaseApp::MainThread() {
 }
 
 void moob::BaseApp::Tick() {
-    
+    for (auto it = begin(mgrs); it != end(mgrs); it++)
+    {
+        it->Tick();
+    }
 }
 
 void moob::BaseApp::ThreadLoop() {
@@ -45,5 +48,5 @@ int32_t moob::BaseApp::ScreenHeight() {
 
 template <typename T>
 void moob::BaseApp::RegistMgr(T mgr) {
-    
+    mgrs.push_back(mgr);
 }

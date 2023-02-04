@@ -20,6 +20,7 @@
 #include <filesystem>
 
 #include "frame/interface/app_interface.hpp"
+#include "frame/interface/mgr_interface.hpp"
 
 namespace moob {
     constexpr uint8_t kMouseBtn = 5;
@@ -56,6 +57,6 @@ namespace moob {
 
         bool is_quit_ = false;
 
-        
+        std::vector<BaseMgr> mgrs = {};
     };
 }

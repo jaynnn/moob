@@ -3,8 +3,11 @@
 #include <d2d1.h>
 #include <functional>
 
+#include "frame/base/pixel.hpp"
+#include "frame/interface/render_interface.hpp"
+
 namespace moob {
-    class D2dApi
+    class D2dApi : public RenderInterface
     {
     private:
         ID2D1Factory            *pFactory_;
@@ -31,6 +34,7 @@ namespace moob {
         void OnDestory();
         void OnPaint();
         void OnResize();
+        virtual void Draw(int32_t x, int32_t, Pixel pixel) final;
         
     };
     

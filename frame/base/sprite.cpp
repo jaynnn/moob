@@ -1,0 +1,1 @@
+#include "frame/base/sprite.hpp"

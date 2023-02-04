@@ -140,3 +140,7 @@ void moob::D2dApi::OnResize() {
         InvalidateRect(hwnd, nullptr, FALSE);
     }
 }
+
+void moob::D2dApi::Draw(int32_t x, int32_t, moob::Pixel pixel) {
+
+}

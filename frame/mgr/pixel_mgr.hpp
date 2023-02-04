@@ -1,21 +1,14 @@
 #pragma once
 
+#include "frame/interface/mgr_interface.hpp"
 #include "frame/base/pixel.hpp"
 
-class PixelMgr
-{
-private:
-    
-public:
-    PixelMgr();
-    ~PixelMgr();
-    void Tick();
-};
-
-PixelMgr::PixelMgr()
-{
-}
-
-PixelMgr::~PixelMgr()
-{
+namespace moob {
+    class PixelMgr : public BaseMgr
+    {
+    private:
+        
+    public:
+        virtual void Tick() final;
+    };
 }
