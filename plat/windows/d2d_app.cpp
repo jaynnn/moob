@@ -34,28 +34,3 @@ LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
         return DefWindowProc(hwnd_, msg, wParam, lParam);
     }
 }
-
-std::thread moob::D2dApp::MainThread()
-{
-    std::thread t = std::thread(&moob::D2dApp::ThreadLoop, this);
-    return t;
-}
-
-void moob::D2dApp::ThreadLoop()
-{
-    if (!ThreadStart()) return;
-    while (!IsQuit()) {
-        Tick();
-    }
-    ThreadEnd();
-}
-
-bool moob::D2dApp::ThreadStart()
-{
-    return true;
-}
-
-void moob::D2dApp::ThreadEnd()
-{
-    
-}

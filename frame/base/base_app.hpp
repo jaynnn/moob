@@ -38,9 +38,13 @@ namespace moob {
         [[nodiscard]] bool IsQuit() const override;
         virtual void PlatTick() = 0;
         bool CreateMainWindow() override { return true; };
+        std::thread MainThread();
     protected:
         AppCfg app_config_;
     private:
+        void ThreadLoop();
+        bool ThreadStart();
+        void ThreadEnd();
         bool is_quit_ = false;
     };
 }

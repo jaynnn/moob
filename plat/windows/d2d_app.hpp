@@ -12,12 +12,8 @@ namespace moob
     private:
         D2dApi d2d_;
         LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
-        void ThreadLoop();
-        bool ThreadStart();
-        void ThreadEnd();
         
     public:
         virtual bool CreateMainWindow();
-        virtual std::thread MainThread();
     };
 }
