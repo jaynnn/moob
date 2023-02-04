@@ -5,3 +5,7 @@
 void moob::PixelMgr::Tick() {
 
 }
+
+int moob::PixelMgr::Init() {
+	return 1;
+}

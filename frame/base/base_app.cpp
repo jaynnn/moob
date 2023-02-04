@@ -1,9 +1,17 @@
 #include "frame/base/base_app.hpp"
+#include "frame/mgr/pixel_mgr.hpp"
 
 moob::BaseApp::~BaseApp() {
 }
 
 int moob::BaseApp::Init() {
+    // regist renderer
+    
+
+    // regist mgr
+    PixelMgr pixelMgr;
+    RegistMgr<PixelMgr>(&pixelMgr);
+
     return 0;
 }
 bool moob::BaseApp::IsQuit() const {
@@ -18,7 +26,7 @@ std::thread moob::BaseApp::MainThread() {
 void moob::BaseApp::Tick() {
     for (auto it = begin(mgrs); it != end(mgrs); it++)
     {
-        it->Tick();
+        (*it)->Tick();
     }
 }
 
@@ -47,6 +55,11 @@ int32_t moob::BaseApp::ScreenHeight() {
 }
 
 template <typename T>
-void moob::BaseApp::RegistMgr(T mgr) {
+void moob::BaseApp::RegistMgr(T *mgr) {
     mgrs.push_back(mgr);
+}
+
+template <typename T>
+void moob::BaseApp::RegistRenderer(const T *renderer) {
+    pRenderer_ = renderer;
 }

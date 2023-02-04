@@ -21,6 +21,7 @@
 
 #include "frame/interface/app_interface.hpp"
 #include "frame/interface/mgr_interface.hpp"
+#include "frame/interface/render_interface.hpp"
 
 namespace moob {
     constexpr uint8_t kMouseBtn = 5;
@@ -46,10 +47,10 @@ namespace moob {
         int32_t ScreenWidth();
         int32_t ScreenHeight();
 
-        template <typename T>
-        void RegistMgr(T mgr);
     protected:
         AppCfg app_config_;
+        template <typename T>
+        void RegistRenderer(const T *renderer);
     private:
         void ThreadLoop();
         bool ThreadStart();
@@ -57,6 +58,10 @@ namespace moob {
 
         bool is_quit_ = false;
 
-        std::vector<BaseMgr> mgrs = {};
+        template <typename T>
+        void RegistMgr(T *mgr);
+        std::vector<MgrInterface *> mgrs = {};
+
+        static std::unique_ptr<RenderInterface> *pRenderer_;
     };
 }

@@ -8,6 +8,11 @@ template <class T> void SafeRelease(T **ppT) {
     }
 }
 
+void moob::D2dApi::DiscardGraphicsResources() {
+    SafeRelease(&pRender_target_);
+    SafeRelease(&pBrush_);
+}
+
 void moob::D2dApi::CalculateLayout() {
     if (pRender_target_ != nullptr)
     {
@@ -50,11 +55,6 @@ HRESULT moob::D2dApi::CreateGraphicsResources() {
     return hr;
 }
 
-void moob::D2dApi::DiscardGraphicsResources() {
-    SafeRelease(&pRender_target_);
-    SafeRelease(&pBrush_);
-}
-
 void moob::D2dApi::DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth) {
     pRender_target_->SetTransform(
         D2D1::Matrix3x2F::Rotation(fAngle, ellipse_.point)
@@ -93,7 +93,7 @@ void moob::D2dApi::RenderScene() {
 }
 
 bool moob::D2dApi::OnCreatFactory() {
-    HRESULT ret = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory_);
+    HRESULT ret = D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &pFactory_);
     if (FAILED(ret))
         return false;
     return true;

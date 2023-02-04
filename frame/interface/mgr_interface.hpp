@@ -1,10 +1,11 @@
 #pragma once
 
-class BaseMgr
+class MgrInterface
 {
 private:
     
 public:
-    virtual ~BaseMgr() = default;
+    virtual ~MgrInterface() = default;
+    virtual int Init() = 0;
     virtual void Tick() = 0;
 };

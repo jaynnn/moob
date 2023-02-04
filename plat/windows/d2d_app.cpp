@@ -12,6 +12,11 @@ bool moob::D2dApp::CreateMainWindow() {
     return ret;
 }
 
+int moob::D2dApp::Init() {
+    // moob::BaseApp::RegistRenderer<D2dApi>(&d2d_);
+    return 1;
+}
+
 LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg)
     {
