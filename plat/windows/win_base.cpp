@@ -5,14 +5,14 @@
 
 void moob::WinApp::PlatTick() {
     MSG msg = {};
-    while (GetMessage(&msg, NULL, 0, 0) > 0) {
+    while (GetMessage(&msg, nullptr, 0, 0) > 0) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
 }
 
 bool moob::WinApp::CreateMainWindow() {
-    hInstance_ = GetModuleHandle(NULL);
+    hInstance_ = GetModuleHandle(nullptr);
 
     WNDCLASSEX wcex = {0};
     wcex.cbSize         = sizeof(WNDCLASSEX);
@@ -22,9 +22,9 @@ bool moob::WinApp::CreateMainWindow() {
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance_;
     // wcex.hIcon          = LoadIcon(hInstance_, MAKEINTRESOURCE(IDI_APPLICATION));
-    wcex.hCursor        = LoadCursor(NULL, IDC_ARROW);
+    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);  
-    wcex.lpszMenuName   = NULL;
+    wcex.lpszMenuName   = nullptr;
     wcex.lpszClassName  = "MoobEngine";
     // wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 
@@ -33,8 +33,8 @@ bool moob::WinApp::CreateMainWindow() {
     hwnd_ = CreateWindowEx(
         0, "MoobEngine", app_config_.appname_,
         WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT,
-        app_config_.screen_w_, app_config_.screen_h_, NULL,
-        NULL, hInstance_, this);
+        app_config_.screen_w_, app_config_.screen_h_, nullptr,
+        nullptr, hInstance_, this);
     
     ShowWindow(hwnd_, SW_SHOWDEFAULT);
 	UpdateWindow(hwnd_);
@@ -52,7 +52,7 @@ void moob::WinApp::OnSize(HWND hwnd, UINT flag, int width, int height) {
 
 LRESULT CALLBACK moob::WinApp::WindowProc(HWND hwnd, UINT msg,
                                     WPARAM wParam, LPARAM lParam) {
-    WinApp* pThis = NULL;
+    WinApp* pThis = nullptr;
     if (msg == WM_NCCREATE) {
         CREATESTRUCT *pCreate = reinterpret_cast<CREATESTRUCT*>(lParam);
         pThis = reinterpret_cast<WinApp*>(pCreate->lpCreateParams);

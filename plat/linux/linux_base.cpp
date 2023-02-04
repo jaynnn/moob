@@ -9,7 +9,7 @@ void moob::LinuxApp::Tick() {
 }
 bool moob::LinuxApp::CreateMainWindow() {
 
-   display_ = XOpenDisplay(NULL);
+   display_ = XOpenDisplay(nullptr);
  
    screen_ = DefaultScreen(display_);
    window_ = XCreateSimpleWindow(display_, RootWindow(display_, screen_), 10, 10, 100, 100, 1,

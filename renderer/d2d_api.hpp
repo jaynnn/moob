@@ -22,7 +22,7 @@ namespace moob {
         void DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth);
         void RenderScene();
     public:
-        D2dApi() : pFactory_(NULL), pRender_target_(NULL), pBrush_(NULL), pStroke_(NULL) {} ;
+        D2dApi() : pFactory_(nullptr), pRender_target_(nullptr), pBrush_(nullptr), pStroke_(nullptr) {} ;
         ~D2dApi() {};
 
         void SetGetHwndFunc(std::function<HWND()> func) { pHwndFunc_ = func; };

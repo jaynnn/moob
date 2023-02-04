@@ -4,12 +4,12 @@ template <class T> void SafeRelease(T **ppT) {
     if (*ppT)
     {
         (*ppT)->Release();
-        *ppT = NULL;
+        *ppT = nullptr;
     }
 }
 
 void moob::D2dApi::CalculateLayout() {
-    if (pRender_target_ != NULL)
+    if (pRender_target_ != nullptr)
     {
         D2D1_SIZE_F size = pRender_target_->GetSize();
         const float x = size.width / 2;
@@ -22,7 +22,7 @@ void moob::D2dApi::CalculateLayout() {
 HRESULT moob::D2dApi::CreateGraphicsResources() {
     HWND hwnd = GetHwnd();
     HRESULT hr = S_OK;
-    if (pRender_target_ == NULL)
+    if (pRender_target_ == nullptr)
     {
         RECT rc;
         GetClientRect(hwnd, &rc);
@@ -128,7 +128,7 @@ void moob::D2dApi::OnPaint() {
 
 void moob::D2dApi::OnResize() {
     HWND hwnd = GetHwnd();
-    if (pRender_target_ != NULL)
+    if (pRender_target_ != nullptr)
     {
         RECT rc;
         GetClientRect(hwnd, &rc);
@@ -137,6 +137,6 @@ void moob::D2dApi::OnResize() {
 
         pRender_target_->Resize(size);
         CalculateLayout();
-        InvalidateRect(hwnd, NULL, FALSE);
+        InvalidateRect(hwnd, nullptr, FALSE);
     }
 }
