@@ -1,7 +1,6 @@
 #include "renderer/d2d_api.hpp"
 
-template <class T> void SafeRelease(T **ppT)
-{
+template <class T> void SafeRelease(T **ppT) {
     if (*ppT)
     {
         (*ppT)->Release();
@@ -9,8 +8,7 @@ template <class T> void SafeRelease(T **ppT)
     }
 }
 
-void moob::D2dApi::CalculateLayout()
-{
+void moob::D2dApi::CalculateLayout() {
     if (pRender_target_ != NULL)
     {
         D2D1_SIZE_F size = pRender_target_->GetSize();
@@ -21,8 +19,7 @@ void moob::D2dApi::CalculateLayout()
     }
 }
 
-HRESULT moob::D2dApi::CreateGraphicsResources()
-{
+HRESULT moob::D2dApi::CreateGraphicsResources() {
     HWND hwnd = GetHwnd();
     HRESULT hr = S_OK;
     if (pRender_target_ == NULL)
@@ -53,14 +50,12 @@ HRESULT moob::D2dApi::CreateGraphicsResources()
     return hr;
 }
 
-void moob::D2dApi::DiscardGraphicsResources()
-{
+void moob::D2dApi::DiscardGraphicsResources() {
     SafeRelease(&pRender_target_);
     SafeRelease(&pBrush_);
 }
 
-void moob::D2dApi::DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth)
-{
+void moob::D2dApi::DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth) {
     pRender_target_->SetTransform(
         D2D1::Matrix3x2F::Rotation(fAngle, ellipse_.point)
             );
@@ -76,8 +71,7 @@ void moob::D2dApi::DrawClockHand(float fHandLength, float fAngle, float fStrokeW
         ellipse_.point, endPoint, pStroke_, fStrokeWidth);
 }
 
-void moob::D2dApi::RenderScene()
-{
+void moob::D2dApi::RenderScene() {
     pRender_target_->Clear(D2D1::ColorF(D2D1::ColorF::SkyBlue));
 
     pRender_target_->FillEllipse(ellipse_, pBrush_);
@@ -111,8 +105,7 @@ void moob::D2dApi::OnDestory() {
     PostQuitMessage(0);
 }
 
-void moob::D2dApi::OnPaint()
-{
+void moob::D2dApi::OnPaint() {
     HRESULT hr = CreateGraphicsResources();
     HWND hwnd = GetHwnd();
     if (SUCCEEDED(hr))

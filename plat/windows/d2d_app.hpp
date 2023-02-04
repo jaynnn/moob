@@ -3,8 +3,7 @@
 #include "plat/windows/win_base.hpp"
 #include "renderer/d2d_api.hpp"
 
-namespace moob 
-{
+namespace moob  {
     class D2dApp : public WinApp
     {
     using WinApp::WinApp;

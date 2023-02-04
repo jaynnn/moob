@@ -2,14 +2,17 @@
 
 #include <iostream>
 
-class Sprite
-{
+class Sprite {
 protected:
-    uint32_t x;
-    uint32_t y;
+    struct Pos
+    {
+        uint32_t x;
+        uint32_t y;
+    };
+    
 public:
     Sprite();
-    Sprite(uint32_t x, uint32_t y);
+    Sprite(Pos pos);
     virtual void Tick() = 0;
     virtual ~Sprite() = default;
 };

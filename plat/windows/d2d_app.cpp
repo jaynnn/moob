@@ -12,8 +12,7 @@ bool moob::D2dApp::CreateMainWindow() {
     return ret;
 }
 
-LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam)
-{
+LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg)
     {
     case WM_CREATE:

@@ -1,8 +1,7 @@
 #include "plat/windows/win_base.hpp"
 
 
-namespace moob 
-{
+namespace moob  {
     class GlApp
     {
     private:
