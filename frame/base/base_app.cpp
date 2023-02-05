@@ -58,8 +58,3 @@ template <typename T>
 void moob::BaseApp::RegistMgr(T *mgr) {
     mgrs.push_back(mgr);
 }
-
-template <typename T>
-void moob::BaseApp::RegistRenderer(const T *renderer) {
-    pRenderer_ = renderer;
-}

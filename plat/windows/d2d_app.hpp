@@ -1,7 +1,7 @@
 #pragma once
 
 #include "plat/windows/win_base.hpp"
-#include "renderer/d2d_api.hpp"
+#include "plat/windows/d2d_mgr.hpp"
 
 namespace moob  {
     class D2dApp : public WinApp
@@ -9,7 +9,7 @@ namespace moob  {
     using WinApp::WinApp;
 
     private:
-        D2dApi d2d_;
+        D2dMgr d2d_;
         LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
         
     public:

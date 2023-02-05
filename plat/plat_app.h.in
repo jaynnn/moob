@@ -4,8 +4,6 @@
 #include "plat/@PLAT_INCLUDE_NAME@"
 
 namespace moob {
-    class PlatApp : public @GRAPHICS_CLASS@ {
-        using @GRAPHICS_CLASS@::@GRAPHICS_CLASS@;
-
-    };
+    using PlatApp = @PLAT_APP_CLASS@;
+    using RendererMgr = @RENDERER_CLASS@;
 }

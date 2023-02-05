@@ -1,4 +1,4 @@
-#include "renderer/d2d_api.hpp"
+#include "plat/windows/d2d_mgr.hpp"
 
 template <class T> void SafeRelease(T **ppT) {
     if (*ppT)
@@ -8,12 +8,12 @@ template <class T> void SafeRelease(T **ppT) {
     }
 }
 
-void moob::D2dApi::DiscardGraphicsResources() {
+void moob::D2dMgr::DiscardGraphicsResources() {
     SafeRelease(&pRender_target_);
     SafeRelease(&pBrush_);
 }
 
-void moob::D2dApi::CalculateLayout() {
+void moob::D2dMgr::CalculateLayout() {
     if (pRender_target_ != nullptr)
     {
         D2D1_SIZE_F size = pRender_target_->GetSize();
@@ -24,7 +24,7 @@ void moob::D2dApi::CalculateLayout() {
     }
 }
 
-HRESULT moob::D2dApi::CreateGraphicsResources() {
+HRESULT moob::D2dMgr::CreateGraphicsResources() {
     HWND hwnd = GetHwnd();
     HRESULT hr = S_OK;
     if (pRender_target_ == nullptr)
@@ -55,7 +55,7 @@ HRESULT moob::D2dApi::CreateGraphicsResources() {
     return hr;
 }
 
-void moob::D2dApi::DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth) {
+void moob::D2dMgr::DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth) {
     pRender_target_->SetTransform(
         D2D1::Matrix3x2F::Rotation(fAngle, ellipse_.point)
             );
@@ -71,7 +71,7 @@ void moob::D2dApi::DrawClockHand(float fHandLength, float fAngle, float fStrokeW
         ellipse_.point, endPoint, pStroke_, fStrokeWidth);
 }
 
-void moob::D2dApi::RenderScene() {
+void moob::D2dMgr::RenderScene() {
     pRender_target_->Clear(D2D1::ColorF(D2D1::ColorF::SkyBlue));
 
     pRender_target_->FillEllipse(ellipse_, pBrush_);
@@ -92,20 +92,20 @@ void moob::D2dApi::RenderScene() {
     pRender_target_->SetTransform( D2D1::Matrix3x2F::Identity() );
 }
 
-bool moob::D2dApi::OnCreatFactory() {
+bool moob::D2dMgr::OnCreatFactory() {
     HRESULT ret = D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &pFactory_);
     if (FAILED(ret))
         return false;
     return true;
 }
 
-void moob::D2dApi::OnDestory() {
+void moob::D2dMgr::OnDestory() {
     DiscardGraphicsResources();
     SafeRelease(&pFactory_);
     PostQuitMessage(0);
 }
 
-void moob::D2dApi::OnPaint() {
+void moob::D2dMgr::OnPaint() {
     HRESULT hr = CreateGraphicsResources();
     HWND hwnd = GetHwnd();
     if (SUCCEEDED(hr))
@@ -126,7 +126,7 @@ void moob::D2dApi::OnPaint() {
     }
 }
 
-void moob::D2dApi::OnResize() {
+void moob::D2dMgr::OnResize() {
     HWND hwnd = GetHwnd();
     if (pRender_target_ != nullptr)
     {
@@ -141,6 +141,6 @@ void moob::D2dApi::OnResize() {
     }
 }
 
-void moob::D2dApi::Draw(int32_t x, int32_t, moob::Pixel pixel) {
+void moob::D2dMgr::Draw(int32_t x, int32_t, moob::Pixel pixel) {
 
 }

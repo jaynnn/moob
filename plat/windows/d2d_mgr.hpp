@@ -7,7 +7,7 @@
 #include "frame/interface/render_interface.hpp"
 
 namespace moob {
-    class D2dApi : public RenderInterface
+    class D2dMgr : public RenderInterface
     {
     private:
         ID2D1Factory            *pFactory_;
@@ -25,8 +25,8 @@ namespace moob {
         void DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth);
         void RenderScene();
     public:
-        D2dApi() : pFactory_(nullptr), pRender_target_(nullptr), pBrush_(nullptr), pStroke_(nullptr) {} ;
-        ~D2dApi() {};
+        D2dMgr() : pFactory_(nullptr), pRender_target_(nullptr), pBrush_(nullptr), pStroke_(nullptr) {} ;
+        ~D2dMgr() {};
 
         void SetGetHwndFunc(std::function<HWND()> func) { pHwndFunc_ = func; };
 

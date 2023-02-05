@@ -62,6 +62,5 @@ namespace moob {
         void RegistMgr(T *mgr);
         std::vector<MgrInterface *> mgrs = {};
 
-        static std::unique_ptr<RenderInterface> *pRenderer_;
     };
 }
