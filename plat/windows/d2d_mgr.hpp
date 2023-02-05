@@ -34,6 +34,9 @@ namespace moob {
         void OnDestory();
         void OnPaint();
         void OnResize();
+
+        // virtual void CreatDevice() final;
+        
         virtual void Draw(int32_t x, int32_t, Pixel pixel) final;
         
     };

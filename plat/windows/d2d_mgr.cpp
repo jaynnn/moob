@@ -72,24 +72,46 @@ void moob::D2dMgr::DrawClockHand(float fHandLength, float fAngle, float fStrokeW
 }
 
 void moob::D2dMgr::RenderScene() {
-    pRender_target_->Clear(D2D1::ColorF(D2D1::ColorF::SkyBlue));
+    D2D1_SIZE_F rtSize = pRender_target_->GetSize();
+    // Draw a grid background.
+    int width = static_cast<int>(rtSize.width);
+    int height = static_cast<int>(rtSize.height);
 
-    pRender_target_->FillEllipse(ellipse_, pBrush_);
-    pRender_target_->DrawEllipse(ellipse_, pBrush_);
+    for (int x = 0; x < width; x += 10)
+    {
+        pRender_target_->DrawLine(
+            D2D1::Point2F(static_cast<FLOAT>(x), 0.0f),
+            D2D1::Point2F(static_cast<FLOAT>(x), rtSize.height),
+            pBrush_,
+            0.5f
+            );
+    }
 
-    // Draw hands
-    SYSTEMTIME time;
-    GetLocalTime(&time);
+    for (int y = 0; y < height; y += 10)
+    {
+        pRender_target_->DrawLine(
+            D2D1::Point2F(0.0f, static_cast<FLOAT>(y)),
+            D2D1::Point2F(rtSize.width, static_cast<FLOAT>(y)),
+            pBrush_,
+            0.5f
+            );
+    }
+    // Draw two rectangles.
+    D2D1_RECT_F rectangle1 = D2D1::RectF(
+        rtSize.width/2 - 50.0f,
+        rtSize.height/2 - 50.0f,
+        rtSize.width/2 + 50.0f,
+        rtSize.height/2 + 50.0f
+        );
 
-    // 60 minutes = 30 degrees, 1 minute = 0.5 degree
-    const float fHourAngle = (360.0f / 12) * (time.wHour) + (time.wMinute * 0.5f);
-    const float fMinuteAngle =(360.0f / 60) * (time.wMinute);
-
-    DrawClockHand(0.6f,  fHourAngle,   6);
-    DrawClockHand(0.85f, fMinuteAngle, 4);
-
-    // Restore the identity transformation.
-    pRender_target_->SetTransform( D2D1::Matrix3x2F::Identity() );
+    D2D1_RECT_F rectangle2 = D2D1::RectF(
+        rtSize.width/2 - 100.0f,
+        rtSize.height/2 - 100.0f,
+        rtSize.width/2 + 100.0f,
+        rtSize.height/2 + 100.0f
+        );
+    pRender_target_->FillRectangle(&rectangle1, pBrush_);
+    pRender_target_->DrawRectangle(&rectangle2, pStroke_);
 }
 
 bool moob::D2dMgr::OnCreatFactory() {
@@ -114,7 +136,7 @@ void moob::D2dMgr::OnPaint() {
         BeginPaint(hwnd, &ps);
      
         pRender_target_->BeginDraw();
-
+        
         RenderScene();
 
         hr = pRender_target_->EndDraw();
