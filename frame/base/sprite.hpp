@@ -2,19 +2,15 @@
 
 #include <iostream>
 
-namespace moob {
-    struct Pos
-    {
-        uint32_t x;
-        uint32_t y;
-    };
+#include "common/pos_struct.hpp"
 
+namespace moob {
     class Sprite {
     protected:
-        Pos pos_ = {0};
+        moob::Pos pos_ = {0};
     public:
         Sprite();
-        Sprite(Pos pos);
+        Sprite(moob::Pos pos);
         virtual void Tick() = 0;
         virtual ~Sprite() = default;
     };
