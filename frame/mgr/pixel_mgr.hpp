@@ -2,6 +2,7 @@
 
 #include "frame/interface/mgr_interface.hpp"
 #include "frame/base/pixel.hpp"
+#include "common/draw_struct.hpp"
 
 namespace moob {
     class PixelMgr : public MgrInterface

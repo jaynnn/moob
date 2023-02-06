@@ -1,14 +1,15 @@
 #pragma once
 
+#include "frame/interface/mgr_interface.hpp"
 #include "frame/base/pixel.hpp"
 
 namespace moob {
-    class RenderInterface
+    class RenderMgrInterface : public MgrInterface
     {
     private:
         
     public:
-        virtual ~RenderInterface() = default;
+        virtual ~RenderMgrInterface() = default;
         virtual void Draw(int32_t x, int32_t, Pixel pixel) = 0;
     };
     
