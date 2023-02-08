@@ -128,6 +128,24 @@ void moob::D2dMgr::OnDestory() {
 }
 
 void moob::D2dMgr::OnPaint() {
+    HRESULT hr = CreateGraphicsResources();
+    HWND hwnd = GetHwnd();
+    if (SUCCEEDED(hr))
+    {
+        PAINTSTRUCT ps;
+        BeginPaint(hwnd, &ps);
+     
+        pRender_target_->BeginDraw();
+        
+        ExplanDrawFlow(DrawFlow_);
+
+        hr = pRender_target_->EndDraw();
+        if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
+        {
+            DiscardGraphicsResources();
+        }
+        EndPaint(hwnd, &ps);
+    }
 }
 
 void moob::D2dMgr::OnResize() {
@@ -154,39 +172,14 @@ int moob::D2dMgr::Init() {
 }
 
 void moob::D2dMgr::Tick() {
-    HRESULT hr = CreateGraphicsResources();
-    HWND hwnd = GetHwnd();
-    if (SUCCEEDED(hr))
-    {
-        PAINTSTRUCT ps;
-        BeginPaint(hwnd, &ps);
-     
-        pRender_target_->BeginDraw();
-        
-        ExplanDrawFlow(DrawFlows_);
-
-        hr = pRender_target_->EndDraw();
-        if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
-        {
-            DiscardGraphicsResources();
-        }
-        EndPaint(hwnd, &ps);
-    }
 }
 
 
-void moob::D2dMgr::ExplanDrawFlow(std::vector<moob::DrawInfo> flows) {
-    for (auto it = begin(flows); it != end(flows); it++) {
+void moob::D2dMgr::ExplanDrawFlow(std::vector<moob::DrawInfo> flow) {
+    for (auto it = begin(flow); it != end(flow); it++) {
         switch(it->i) {
             case DrawI::PIXEL: {
-                D2D1_SIZE_F rtSize = pRender_target_->GetSize();
-                D2D1_RECT_F rectangle2 = D2D1::RectF(
-                    rtSize.width/2 - 100.0f,
-                    rtSize.height/2 - 100.0f,
-                    rtSize.width/2 + 100.0f,
-                    rtSize.height/2 + 100.0f
-                );
-                pRender_target_->DrawRectangle(&rectangle2, pStroke_);
+                    RenderScene();
                 break;
             default:
                 break;

@@ -49,8 +49,7 @@ namespace moob {
 
     protected:
         AppCfg app_config_;
-        template <typename T>
-        void RegistRenderer(const T *renderer);
+        void RegistMgr(RenderMgrInterface *renderer);
     private:
         void ThreadLoop();
         bool ThreadStart();
@@ -59,8 +58,7 @@ namespace moob {
         bool is_quit_ = false;
 
         template <typename T>
-        void RegistMgr(T *mgr);
+        void RegistMgrT(T *mgr);
         std::vector<MgrInterface *> mgrs = {};
-
     };
 }

@@ -10,7 +10,7 @@ int moob::BaseApp::Init() {
 
     // regist mgr
     PixelMgr pixelMgr;
-    RegistMgr<PixelMgr>(&pixelMgr);
+    RegistMgrT<PixelMgr>(&pixelMgr);
 
     return 0;
 }
@@ -55,6 +55,10 @@ int32_t moob::BaseApp::ScreenHeight() {
 }
 
 template <typename T>
-void moob::BaseApp::RegistMgr(T *mgr) {
+void moob::BaseApp::RegistMgrT(T *mgr) {
     mgrs.push_back(mgr);
+}
+
+void moob::BaseApp::RegistMgr(RenderMgrInterface *renderer_mgr) {
+    mgrs.push_back(renderer_mgr);
 }
