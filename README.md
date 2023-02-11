@@ -10,6 +10,8 @@
     20 and above
 > glfw version:
     3.3.8 and above
+> glad version:
+    opengl 4.6 generated with no extensions
 
 moob 的基础框架是:  
     a. 一个2d页面  
