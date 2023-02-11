@@ -1,14 +1,14 @@
-## compile requires:
-# linux
-> GL X11 pthread
-# windows
-> d2d1 gl
+# compile requires:
+> linux
+>   GL X11 pthread
+> windows
+>   d2d1 gl
 
-# cmake version: 
+> cmake version: 
     3.24 and above
-# cpp version:
+> cpp version:
     20 and above
-# glfw version:
+> glfw version:
     3.3.8 and above
 
 moob 的基础框架是:  
