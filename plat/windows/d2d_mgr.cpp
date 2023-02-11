@@ -55,22 +55,6 @@ HRESULT moob::D2dMgr::CreateGraphicsResources() {
     return hr;
 }
 
-void moob::D2dMgr::DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth) {
-    pRender_target_->SetTransform(
-        D2D1::Matrix3x2F::Rotation(fAngle, ellipse_.point)
-            );
-
-    // endPoint defines one end of the hand.
-    D2D_POINT_2F endPoint = D2D1::Point2F(
-        ellipse_.point.x,
-        ellipse_.point.y - (ellipse_.radiusY * fHandLength)
-        );
-
-    // Draw a line from the center of the ellipse to endPoint.
-    pRender_target_->DrawLine(
-        ellipse_.point, endPoint, pStroke_, fStrokeWidth);
-}
-
 void moob::D2dMgr::RenderScene() {
     D2D1_SIZE_F rtSize = pRender_target_->GetSize();
     // Draw a grid background.
@@ -128,24 +112,6 @@ void moob::D2dMgr::OnDestory() {
 }
 
 void moob::D2dMgr::OnPaint() {
-    HRESULT hr = CreateGraphicsResources();
-    HWND hwnd = GetHwnd();
-    if (SUCCEEDED(hr))
-    {
-        PAINTSTRUCT ps;
-        BeginPaint(hwnd, &ps);
-     
-        pRender_target_->BeginDraw();
-        
-        ExplanDrawFlow(DrawFlow_);
-
-        hr = pRender_target_->EndDraw();
-        if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
-        {
-            DiscardGraphicsResources();
-        }
-        EndPaint(hwnd, &ps);
-    }
 }
 
 void moob::D2dMgr::OnResize() {
@@ -172,6 +138,26 @@ int moob::D2dMgr::Init() {
 }
 
 void moob::D2dMgr::Tick() {
+    if (pFactory_ != nullptr) {
+        HRESULT hr = CreateGraphicsResources();
+        HWND hwnd = GetHwnd();
+        if (SUCCEEDED(hr))
+        {
+            PAINTSTRUCT ps;
+            BeginPaint(hwnd, &ps);
+        
+            pRender_target_->BeginDraw();
+            
+            ExplanDrawFlow(DrawFlow_);
+
+            hr = pRender_target_->EndDraw();
+            if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
+            {
+                DiscardGraphicsResources();
+            }
+            EndPaint(hwnd, &ps);
+        }
+    }
 }
 
 

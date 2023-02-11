@@ -8,6 +8,8 @@
     3.24 and above
 # cpp version:
     20 and above
+# glfw version:
+    3.3.8 and above
 
 moob 的基础框架是:  
     a. 一个2d页面  

@@ -17,10 +17,11 @@ if(WIN32)
         set (RENDER_API_SOURCE 
             ${PLAT_DIR_NAME}d2d_mgr.cpp
             ${PLAT_DIR_NAME}d2d_mgr.hpp)
-        find_library(d2d1_LIBRARY d2d1)
+        find_library(D2D1_LIBRARY d2d1)
         add_library(RENDER_API_LIB ${RENDER_API_SOURCE})
-        target_link_libraries(RENDER_API_LIB ${d2d1_LIBRARY})
+        target_link_libraries(RENDER_API_LIB ${D2D1_LIBRARY})
     elseif(GRAPHICS_LIB_OPENGL)
+        find_library(GL_LIBRARY glad glfw3)
         set(PLAT_INCLUDE_NAME ${PLAT_DIR_NAME}gl_app.hpp)
         set(PLAT_APP_CLASS ${GRAPHICS_LIB_OPENGL}App)
     endif()

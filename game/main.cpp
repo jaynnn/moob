@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     
     app.PlatTick();
 
-     t.join();
+    t.join();
 
     return ret;
 }

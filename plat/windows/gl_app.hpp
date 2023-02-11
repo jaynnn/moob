@@ -1,15 +1,18 @@
-#include "plat/windows/win_base.hpp"
+#pragma once
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include "plat/windows/win_base.hpp"
 
 namespace moob  {
     class GlApp
     {
     private:
+        LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
         
     public:
-        GlApp();
-        ~GlApp();
-        virtual int Init();
-        virtual void Tick();
+        virtual bool CreateMainWindow();
+        virtual int Init() final;
     };
 }
