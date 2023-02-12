@@ -1,7 +1,7 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "third/windows/include/glad/glad.h"
+#include "third/windows/include/glfw3.h"
 
 #include "plat/windows/win_base.hpp"
 
