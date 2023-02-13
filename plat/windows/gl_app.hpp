@@ -1,15 +1,15 @@
 #pragma once
 
-#include "third/windows/include/glad/glad.h"
-#include "third/windows/include/glfw3.h"
+//#include <OpenGL/gl.h>
 
-#include "plat/windows/win_base.hpp"
+#include "frame/base/base_app.hpp"
+#include "third/windows/include/glad/glad.h"
+#include "third/windows/include/glfw/glfw3.h"
 
 namespace moob  {
     class GlApp
     {
     private:
-        LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
         
     public:
         virtual bool CreateMainWindow();
