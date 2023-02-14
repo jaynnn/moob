@@ -1,5 +1,7 @@
 #include "plat/windows/d2d_mgr.hpp"
 
+using namespace moob;
+
 template <class T> void SafeRelease(T **ppT) {
     if (*ppT)
     {
@@ -8,23 +10,25 @@ template <class T> void SafeRelease(T **ppT) {
     }
 }
 
-void moob::D2dMgr::DiscardGraphicsResources() {
+void D2dMgr::DiscardGraphicsResources() {
     SafeRelease(&pRender_target_);
     SafeRelease(&pBrush_);
 }
 
-void moob::D2dMgr::CalculateLayout() {
-    if (pRender_target_ != nullptr)
-    {
-        D2D1_SIZE_F size = pRender_target_->GetSize();
-        const float x = size.width / 2;
-        const float y = size.height / 2;
-        const float radius = min(x, y);
-        ellipse_ = D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius);
-    }
+void D2dMgr::OnDestory() {
+    DiscardGraphicsResources();
+    SafeRelease(&pFactory_);
+    PostQuitMessage(0);
 }
 
-HRESULT moob::D2dMgr::CreateGraphicsResources() {
+bool D2dMgr::OnCreatFactory() {
+    HRESULT ret = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory_);
+    if (FAILED(ret))
+        return false;
+    return true;
+}
+
+HRESULT D2dMgr::CreateGraphicsResources() {
     HWND hwnd = GetHwnd();
     HRESULT hr = S_OK;
     if (pRender_target_ == nullptr)
@@ -43,101 +47,25 @@ HRESULT moob::D2dMgr::CreateGraphicsResources() {
         {
             const D2D1_COLOR_F color = D2D1::ColorF(1.0f, 1.0f, 0);
             hr = pRender_target_->CreateSolidColorBrush(color, &pBrush_);
-
-            if (SUCCEEDED(hr))
-            {
-                const D2D1_COLOR_F color1 = D2D1::ColorF(0.0f, 0.0f, 0);
-                hr = pRender_target_->CreateSolidColorBrush(color1, &pStroke_);
-                CalculateLayout();
-            }
+            const D2D1_COLOR_F color1 = D2D1::ColorF(0.5f, 0.5f, 0);
+            hr = pRender_target_->CreateSolidColorBrush(color1, &pStroke_);
         }
     }
     return hr;
 }
 
-void moob::D2dMgr::RenderScene() {
-    D2D1_SIZE_F rtSize = pRender_target_->GetSize();
-    // Draw a grid background.
-    int width = static_cast<int>(rtSize.width);
-    int height = static_cast<int>(rtSize.height);
-
-    for (int x = 0; x < width; x += 10)
-    {
-        pRender_target_->DrawLine(
-            D2D1::Point2F(static_cast<FLOAT>(x), 0.0f),
-            D2D1::Point2F(static_cast<FLOAT>(x), rtSize.height),
-            pBrush_,
-            0.5f
-            );
-    }
-
-    for (int y = 0; y < height; y += 10)
-    {
-        pRender_target_->DrawLine(
-            D2D1::Point2F(0.0f, static_cast<FLOAT>(y)),
-            D2D1::Point2F(rtSize.width, static_cast<FLOAT>(y)),
-            pBrush_,
-            0.5f
-            );
-    }
-    // Draw two rectangles.
-    D2D1_RECT_F rectangle1 = D2D1::RectF(
-        rtSize.width/2 - 50.0f,
-        rtSize.height/2 - 50.0f,
-        rtSize.width/2 + 50.0f,
-        rtSize.height/2 + 50.0f
-        );
-
-    D2D1_RECT_F rectangle2 = D2D1::RectF(
-        rtSize.width/2 - 100.0f,
-        rtSize.height/2 - 100.0f,
-        rtSize.width/2 + 100.0f,
-        rtSize.height/2 + 100.0f
-        );
-    pRender_target_->FillRectangle(&rectangle1, pBrush_);
-    pRender_target_->DrawRectangle(&rectangle2, pStroke_);
+void D2dMgr::OnResize() {
 }
 
-bool moob::D2dMgr::OnCreatFactory() {
-    HRESULT ret = D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &pFactory_);
-    if (FAILED(ret))
-        return false;
-    return true;
-}
-
-void moob::D2dMgr::OnDestory() {
-    DiscardGraphicsResources();
-    SafeRelease(&pFactory_);
-    PostQuitMessage(0);
-}
-
-void moob::D2dMgr::OnPaint() {
-}
-
-void moob::D2dMgr::OnResize() {
-    HWND hwnd = GetHwnd();
-    if (pRender_target_ != nullptr)
-    {
-        RECT rc;
-        GetClientRect(hwnd, &rc);
-
-        D2D1_SIZE_U size = D2D1::SizeU(rc.right, rc.bottom);
-
-        pRender_target_->Resize(size);
-        CalculateLayout();
-        InvalidateRect(hwnd, nullptr, FALSE);
-    }
-}
-
-void moob::D2dMgr::Draw(int32_t x, int32_t, moob::Pixel pixel) {
+void D2dMgr::Draw(int32_t x, int32_t, Pixel pixel) {
 
 }
 
-int moob::D2dMgr::Init() {
+int D2dMgr::Init() {
     return 1;
 }
 
-void moob::D2dMgr::Tick() {
+void D2dMgr::Tick() {
     if (pFactory_ != nullptr) {
         HRESULT hr = CreateGraphicsResources();
         HWND hwnd = GetHwnd();
@@ -145,10 +73,10 @@ void moob::D2dMgr::Tick() {
         {
             PAINTSTRUCT ps;
             BeginPaint(hwnd, &ps);
-        
+
             pRender_target_->BeginDraw();
-            
-            ExplanDrawFlow(DrawFlow_);
+
+            ExplanDrawFlow();
 
             hr = pRender_target_->EndDraw();
             if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
@@ -160,17 +88,18 @@ void moob::D2dMgr::Tick() {
     }
 }
 
-
-void moob::D2dMgr::ExplanDrawFlow(std::vector<moob::DrawInfo> flow) {
-    for (auto it = begin(flow); it != end(flow); it++) {
-        switch(it->i) {
-            case DrawI::PIXEL: {
-                    RenderScene();
-                break;
-            default:
-                break;
-            }
-        }
-    }
+void D2dMgr::ExplanDrawFlow() {
+    D2D1_RECT_F rectangle = D2D1::Rect(438.0f, 301.5f, 498.0f, 361.5f);
+    pRender_target_->DrawRectangle(rectangle, pBrush_, 1.0f);
+    pRender_target_->FillRectangle(rectangle, pStroke_);
+    // for (auto it = begin(flow); it != end(flow); it++) {
+    //     switch(it->i) {
+    //         case DrawI::PIXEL: {
+    //             break;
+    //         default:
+    //             break;
+    //         }
+    //     }
+    // }
 }
 

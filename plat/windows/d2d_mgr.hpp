@@ -1,6 +1,7 @@
 #pragma once
 
 #include <d2d1.h>
+#include <d2d1_1.h>
 #include <functional>
 #include <vector>
 
@@ -29,6 +30,7 @@ namespace moob {
 
         std::vector<moob::DrawInfo>  DrawFlow_;
         void ExplanDrawFlow(std::vector<moob::DrawInfo> flows);
+        void ExplanDrawFlow();
     public:
         D2dMgr() : pFactory_(nullptr), pRender_target_(nullptr), pBrush_(nullptr), pStroke_(nullptr) {} ;
         ~D2dMgr() {};
@@ -37,7 +39,6 @@ namespace moob {
 
         bool OnCreatFactory();
         void OnDestory();
-        void OnPaint();
         void OnResize();
 
         // virtual void CreatDevice() final;
