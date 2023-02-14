@@ -1,0 +1,1 @@
+link_libraries(glfw3.lib)
