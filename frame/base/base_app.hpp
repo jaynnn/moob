@@ -50,6 +50,7 @@ namespace moob {
     protected:
         AppCfg app_config_;
         void RegistMgr(RenderMgrInterface *renderer);
+        std::vector<moob::DrawInfo>  DrawFlow_;
     private:
         void ThreadLoop();
         bool ThreadStart();

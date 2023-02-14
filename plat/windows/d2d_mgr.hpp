@@ -28,8 +28,6 @@ namespace moob {
         void DrawClockHand(float fHandLength, float fAngle, float fStrokeWidth);
         void RenderScene();
 
-        std::vector<moob::DrawInfo>  DrawFlow_;
-        void ExplanDrawFlow(std::vector<moob::DrawInfo> flows);
         void ExplanDrawFlow();
     public:
         D2dMgr() : pFactory_(nullptr), pRender_target_(nullptr), pBrush_(nullptr), pStroke_(nullptr) {} ;

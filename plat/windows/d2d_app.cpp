@@ -25,7 +25,6 @@ LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) {
             return -1;
         return 0;
     case WM_PAINT:
-         d2d_.OnPaint();
          return 0;
     case WM_SIZE:
         d2d_.OnResize();
