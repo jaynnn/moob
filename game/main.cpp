@@ -12,9 +12,7 @@ int main(int argc, char **argv) {
     ret = app.Init();
 
     std::thread t = app.MainThread();
-    
     app.PlatTick();
-
     t.join();
 
     return ret;

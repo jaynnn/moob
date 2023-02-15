@@ -1,10 +1,14 @@
 #include "frame/base/base_app.hpp"
 #include "frame/mgr/pixel_mgr.hpp"
 
-moob::BaseApp::~BaseApp() {
+using namespace moob;
+
+BaseApp::~BaseApp() 
+{
 }
 
-int moob::BaseApp::Init() {
+int BaseApp::Init() 
+{
     // regist renderer
     
 
@@ -14,51 +18,61 @@ int moob::BaseApp::Init() {
 
     return 0;
 }
-bool moob::BaseApp::IsQuit() const {
+bool BaseApp::IsQuit() const 
+{
     return is_quit_;
 }
-
-std::thread moob::BaseApp::MainThread() {
-    std::thread t = std::thread(&moob::BaseApp::ThreadLoop, this);
+std::thread BaseApp::MainThread() 
+{
+    std::thread t = std::thread(&BaseApp::ThreadLoop, this);
     return t;
 }
 
-void moob::BaseApp::Tick() {
-    for (auto it = begin(mgrs); it != end(mgrs); it++)
+void BaseApp::Tick() 
+{
+    for (auto it = begin(mgrs); it != end(mgrs); it++) 
     {
         (*it)->Tick();
     }
 }
 
-void moob::BaseApp::ThreadLoop() {
+void BaseApp::ThreadLoop() 
+{
     if (!ThreadStart()) return;
-    while (!IsQuit()) {
+    while (!IsQuit()) 
+{
         Tick();
     }
     ThreadEnd();
 }
 
-bool moob::BaseApp::ThreadStart() {
+bool BaseApp::ThreadStart() 
+{
     return true;
 }
 
-void moob::BaseApp::ThreadEnd() {
+void BaseApp::ThreadEnd() 
+{
     
 }
 
-int32_t moob::BaseApp::ScreenWidth() {
+int32_t BaseApp::ScreenWidth() 
+{
     return app_config_.screen_w_;
 }
 
-int32_t moob::BaseApp::ScreenHeight() {
+int32_t BaseApp::ScreenHeight() 
+{
     return app_config_.screen_h_;
 }
 
 template <typename T>
-void moob::BaseApp::RegistMgrT(T *mgr) {
+void BaseApp::RegistMgrT(T *mgr) 
+{
     mgrs.push_back(mgr);
 }
 
-void moob::BaseApp::RegistMgr(RenderMgrInterface *renderer_mgr) {
+void BaseApp::RegistMgr(RenderMgrInterface *renderer_mgr) 
+{
     mgrs.push_back(renderer_mgr);
 }

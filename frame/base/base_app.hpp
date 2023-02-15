@@ -19,6 +19,7 @@
 #include <cstring>
 #include <filesystem>
 
+#include "common/draw_struct.hpp"
 #include "frame/interface/app_interface.hpp"
 #include "frame/interface/mgr_interface.hpp"
 #include "frame/interface/render_interface.hpp"

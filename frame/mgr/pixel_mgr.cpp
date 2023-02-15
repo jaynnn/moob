@@ -2,10 +2,21 @@
 
 #include "frame/mgr/pixel_mgr.hpp"
 
-void moob::PixelMgr::Tick() {
-    
+using namespace moob;
+
+void PixelMgr::Tick() 
+{
+    Pos pos{0, 0};
+    Pixel p(pos, 255, 99, 71, 0);
+    Draw(p);
 }
 
-int moob::PixelMgr::Init() {
+int PixelMgr::Init() 
+{
 	return 1;
+}
+
+void PixelMgr::Draw(Pixel p)
+{
+
 }

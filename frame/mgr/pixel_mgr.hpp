@@ -12,5 +12,6 @@ namespace moob {
     public:
         virtual void Tick() final;
         virtual int Init() final;
+        void Draw(Pixel p);
     };
 }

@@ -9,8 +9,6 @@ namespace moob {
     protected:
         moob::Pos pos_ = {0};
     public:
-        Sprite();
-        Sprite(moob::Pos pos);
         virtual void Tick() = 0;
         virtual ~Sprite() = default;
     };
