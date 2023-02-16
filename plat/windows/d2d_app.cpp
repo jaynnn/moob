@@ -1,7 +1,6 @@
 #include "plat/windows/d2d_app.hpp"
 
 bool moob::D2dApp::CreateMainWindow() {
-
     auto func = [this]() -> HWND {
         return (HWND)GetHwnd();
     };
@@ -13,7 +12,8 @@ bool moob::D2dApp::CreateMainWindow() {
 }
 
 int moob::D2dApp::Init() {
-    RegistMgr(&d2d_);
+    BaseApp::Init();
+    SetRenderer(&d2d_);
     return 1;
 }
 
