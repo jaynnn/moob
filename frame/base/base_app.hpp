@@ -23,6 +23,7 @@
 #include "frame/interface/app_interface.hpp"
 #include "frame/interface/mgr_interface.hpp"
 #include "frame/interface/render_interface.hpp"
+#include "frame/mgr/pixel_mgr.hpp"
 
 namespace moob {
     constexpr uint8_t kMouseBtn = 5;
@@ -50,17 +51,25 @@ namespace moob {
 
     protected:
         AppCfg app_config_;
-        void RegistMgr(RenderMgrInterface *renderer);
-        std::vector<moob::DrawInfo>  DrawFlow_;
+        std::vector<moob::DrawInfo> DrawFlow_;
     private:
+        bool is_quit_ = false;
+        std::vector<MgrInterface *> mgrs_ = {};
+
         void ThreadLoop();
         bool ThreadStart();
         void ThreadEnd();
-
-        bool is_quit_ = false;
-
+    
+    // ======== managers start ========
+    protected:
+        void SetRenderer(RenderMgrInterface *renderer);
+        RenderMgrInterface* GetRenderer();
         template <typename T>
         void RegistMgrT(T *mgr);
-        std::vector<MgrInterface *> mgrs = {};
+    private:
+        PixelMgr pixelMgr_;
+        RenderMgrInterface* renderer_;
+    public:
+    // ======== managers end  ========
     };
 }

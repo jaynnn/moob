@@ -8,8 +8,8 @@ int main(int argc, char **argv) {
     moob::AppCfg config;
     moob::PlatApp app(config);
 
-    app.CreateMainWindow();
     ret = app.Init();
+    app.CreateMainWindow();
 
     std::thread t = app.MainThread();
     app.PlatTick();
