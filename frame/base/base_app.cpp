@@ -35,17 +35,9 @@ bool BaseApp::IsQuit() const
 
 std::thread BaseApp::MainThread()
 {
-    std::thread t = std::thread(&BaseApp::ThreadLoop, this);
+    std::thread t = std::thread(&BaseApp::ReanderLoop, this);
+    std::thread t2 = std::thread(&BaseApp::ThreadLoop, this);
     return t;
-}
-
-void BaseApp::Tick() 
-{
-    for (auto it = begin(mgrs_); it != end(mgrs_); it++) 
-    {
-        (*it)->Tick();
-        renderer_->Tick();
-    }
 }
 
 void BaseApp::ThreadLoop() 
@@ -56,6 +48,22 @@ void BaseApp::ThreadLoop()
         Tick();
     }
     ThreadEnd();
+}
+
+void BaseApp::ReanderLoop()
+{
+    while (!IsQuit()) 
+    {
+        renderer_->Tick();
+    }
+}
+
+void BaseApp::Tick() 
+{
+    for (auto it = begin(mgrs_); it != end(mgrs_); it++) 
+    {
+        (*it)->Tick();
+    }
 }
 
 bool BaseApp::ThreadStart() 

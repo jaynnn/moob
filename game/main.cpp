@@ -11,9 +11,10 @@ int main(int argc, char **argv) {
     ret = app.Init();
     app.CreateMainWindow();
 
-    std::thread t = app.MainThread();
+    std::thread it = app.MainThread();
     app.PlatTick();
-    t.join();
+    
+    it.join();
 
     return ret;
 }

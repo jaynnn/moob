@@ -59,6 +59,7 @@ namespace moob {
         void ThreadLoop();
         bool ThreadStart();
         void ThreadEnd();
+        void ReanderLoop();
     
     // ======== managers start ========
     protected:
