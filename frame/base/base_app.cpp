@@ -13,19 +13,14 @@ int BaseApp::Init()
 
     auto func = [this] () -> RenderMgrInterface* 
     {
-        (RenderMgrInterface*)GetRenderer();
+        return (RenderMgrInterface*)GetRenderer();
     };
     for (auto it = begin(mgrs_); it != end(mgrs_); it++) 
     {
-        //(*it)->SetRenderFunc();
+        (*it)->SetRenderFunc(func);
     }
 
     return 0;
-}
-
-RenderMgrInterface* BaseApp::GetRenderer() 
-{
-    return renderer_;
 }
 
 bool BaseApp::IsQuit() const 
@@ -33,10 +28,16 @@ bool BaseApp::IsQuit() const
     return is_quit_;
 }
 
+
 std::thread BaseApp::MainThread()
 {
+    std::thread t = std::thread(&BaseApp::ThreadLoop, this);
+    return t;
+}
+
+std::thread BaseApp::RenderThread()
+{
     std::thread t = std::thread(&BaseApp::ReanderLoop, this);
-    std::thread t2 = std::thread(&BaseApp::ThreadLoop, this);
     return t;
 }
 
@@ -95,4 +96,9 @@ void BaseApp::RegistMgrT(T *mgr)
 void BaseApp::SetRenderer(RenderMgrInterface *renderer_mgr) 
 {
     renderer_ = renderer_mgr;
+}
+
+RenderMgrInterface* BaseApp::GetRenderer() 
+{
+    return renderer_;
 }

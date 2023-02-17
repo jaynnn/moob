@@ -23,6 +23,7 @@
 #include "frame/interface/app_interface.hpp"
 #include "frame/interface/mgr_interface.hpp"
 #include "frame/interface/render_interface.hpp"
+#include "frame/mgr/base_mgr.hpp"
 #include "frame/mgr/pixel_mgr.hpp"
 
 namespace moob {
@@ -45,6 +46,7 @@ namespace moob {
         virtual void Tick();
         virtual void PlatTick() = 0;
         std::thread MainThread();
+        std::thread RenderThread();
 
         int32_t ScreenWidth();
         int32_t ScreenHeight();
@@ -54,7 +56,7 @@ namespace moob {
         std::vector<moob::DrawInfo> DrawFlow_;
     private:
         bool is_quit_ = false;
-        std::vector<MgrInterface *> mgrs_ = {};
+        std::vector<BaseMgr *> mgrs_ = {};
 
         void ThreadLoop();
         bool ThreadStart();
