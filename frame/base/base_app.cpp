@@ -41,7 +41,7 @@ std::thread BaseApp::RenderThread()
     return t;
 }
 
-void BaseApp::ThreadLoop() 
+void BaseApp::ThreadLoop()
 {
     if (!ThreadStart()) return;
     while (!IsQuit()) 
