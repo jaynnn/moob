@@ -15,7 +15,7 @@ class ThreadMgr : MgrInterface
         void Run();
     private: 
         using task_t = std::function<void()>; 
-        std::vectorstd::thread threads_; 
+        std::vector<std::thread> threads_; 
         std::vector task_; 
         std::mutex mutex_; 
 };

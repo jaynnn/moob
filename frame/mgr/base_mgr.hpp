@@ -1,6 +1,5 @@
 #pragma once
 
-#include <functional>
 
 #include "frame/interface/render_interface.hpp"
 

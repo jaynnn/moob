@@ -6,7 +6,7 @@ using namespace moob;
 void ThreadMgr::AddTask(std::function<void()> task)
 { 
     std::unique_lockstd::mutex lock(mutex_); 
-    task_.push_back(task); 
+    task_.push_back(task);
 }
 
 //启动线程池，开始执行任务
@@ -26,7 +26,7 @@ void ThreadMgr::Wait()
 //每个线程都执行的任务 
 void ThreadMgr::Run() 
 { 
-    while (true) 
+    while (true)
     { 
         task_t task; 
         { 
@@ -35,6 +35,6 @@ void ThreadMgr::Run()
             task = task_.back(); 
             task_.pop_back(); 
         } 
-        task(); 
+        task();
     } 
 }
