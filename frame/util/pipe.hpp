@@ -4,8 +4,8 @@
 
 namespace moob {
     template <typename T>
-    class Pipe { 
-        ~Pipe() = default;
+    class Pipe {
+        virtual ~Pipe() = default;
     public:
         void Push(const T x);
         T Pop();
