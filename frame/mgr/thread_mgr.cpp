@@ -28,13 +28,16 @@ void ThreadMgr::Run()
 { 
     while (true)
     { 
-        task_t task; 
-        {
-            std::unique_lock<std::mutex> lock(mutex_); 
-            if (task_.empty()) return;
-            task = task_.back(); 
-            task_.pop_back(); 
-        } 
+        task_t task;
+        std::unique_lock<std::mutex> lock(mutex_);
+        if (task_.empty()) return;
+        task = task_.back();
+        task_.pop_back();
         task();
     } 
+}
+
+int ThreadMgr::Init()
+{
+    return 1;
 }

@@ -9,8 +9,8 @@ namespace moob {
     class PipeMgr : public MgrInterface
     {
     private:
-        template <typename T>
-        std::map<uint32_t, Pipe<T>> piles_; 
+        // template <typename T>
+        // std::map<uint32_t, Pipe<T>> piles_; 
     public:
         PipeMgr();
         PipeMgr(uint32_t count);

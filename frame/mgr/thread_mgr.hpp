@@ -12,10 +12,11 @@ namespace moob {
         public: 
             ThreadMgr() {}; 
             ~ThreadMgr(){}; 
-        private: 
             void AddTask(std::function<void()> task);
             void Start(int num);
             void Wait();
+            int Init();
+        private: 
             void Run();
         private: 
             using task_t = std::function<void()>; 

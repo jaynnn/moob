@@ -45,8 +45,8 @@ namespace moob {
         virtual int Init();
         virtual void Tick();
         virtual void PlatTick() = 0;
-        std::thread MainThread();
-        std::thread RenderThread();
+        void ThreadLoop();
+        void ReanderLoop();
 
         int32_t ScreenWidth();
         int32_t ScreenHeight();
@@ -58,10 +58,8 @@ namespace moob {
         bool is_quit_ = false;
         std::vector<BaseMgr *> mgrs_ = {};
 
-        void ThreadLoop();
         bool ThreadStart();
         void ThreadEnd();
-        void ReanderLoop();
     
     // ======== managers start ========
     protected:

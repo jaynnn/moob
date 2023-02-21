@@ -28,19 +28,6 @@ bool BaseApp::IsQuit() const
     return is_quit_;
 }
 
-
-std::thread BaseApp::MainThread()
-{
-    std::thread t = std::thread(&BaseApp::ThreadLoop, this);
-    return t;
-}
-
-std::thread BaseApp::RenderThread()
-{
-    std::thread t = std::thread(&BaseApp::ReanderLoop, this);
-    return t;
-}
-
 void BaseApp::ThreadLoop()
 {
     if (!ThreadStart()) return;
