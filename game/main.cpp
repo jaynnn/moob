@@ -1,16 +1,19 @@
 
 #include "common/config.hpp"
-#include "common/loging.hpp"
 #include "plat/plat_app.hpp"
+#include "common/logger.hpp"
 #include "frame/mgr/thread_mgr.hpp"
 
-#ifdef MOOB_LOG_LEVEL
-    moob::Loging loging(MOOB_LOG_LEVEL);
-    #define MLOG(s) loging.PrintLog(MOOB_LOG_LEVEL, (s))
-#endif
-
 int main(int argc, char **argv) {
-    // MLOG("11111111111");
+#ifdef MOOB_LOG_LEVEL
+    moob::Logger::GetInstance().SetLogLevel(MOOB_LOG_LEVEL);
+    // using MLOG = moob::Logger;
+    auto &MLOG = moob::Logger::GetInstance();
+#else
+    #define MLOG.Log(x) ((void)x)
+    #define MLOG.SetLogLevel(x) ((void)x)
+#endif
+    MLOG.Log(1, "llllllllllllll");
     int ret;
 
     moob::AppCfg config;
