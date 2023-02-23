@@ -3,6 +3,7 @@
 #include "common/config.hpp"
 #include "plat/@PLAT_INCLUDE_NAME@"
 
+#define MOOB_LOG_LEVEL @LOG_LEVEL@
 namespace moob {
     using PlatApp = @PLAT_APP_CLASS@;
     using RendererMgr = @RENDERER_CLASS@;

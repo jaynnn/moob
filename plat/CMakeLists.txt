@@ -48,6 +48,8 @@ else()
     add_subdirectory(empty)
 endif(WIN32)
 
+#enum LogLevel { DEBUG = 0, INFO, WARN, ERROR };
+set(LOG_LEVEL 1)
 configure_file(
     "${PROJECT_SOURCE_DIR}/plat/plat_app.h.in"
     "${PROJECT_SOURCE_DIR}/plat/plat_app.hpp")
