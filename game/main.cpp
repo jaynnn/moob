@@ -11,8 +11,9 @@
 #endif
 
 int main(int argc, char **argv) {
-    MLOG->SetLogLevel(MOOB_LOG_LEVEL);
-    MLOG->Log(1, "hello");
+    // MLOG->SetLogLevel(MOOB_LOG_LEVEL);
+    // MLOG->Log(1, "hello");
+    MLOG::GetInstance()->Log(1, "hi");
     
     int ret;
     moob::AppCfg config;

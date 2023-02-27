@@ -9,7 +9,7 @@
 // 日志等级 [0 1 2 3] == [debug info warning error]
 namespace moob
 {
-    class Logger
+    class Logger : public Singleton<Logger>
     {
     public: 
         template<typename... Args>
@@ -27,10 +27,10 @@ namespace moob
             log_level_ = level;
         }
     private: 
-        Logger() { } 
+        Logger();
         Logger(const Logger&) = delete; 
         Logger& operator=(const Logger&) = delete; 
-        ~Logger() { }
+        virtual ~Logger();
 
         template<typename T, typename... Args>
         void Print(const T& arg, const Args&... args)
@@ -50,7 +50,9 @@ namespace moob
         std::mutex mutex_;
         int log_level_;
     };
-    Logger* Singleton<Logger>::instance_ = nullptr;
+    
 }
 
-auto MLOG = moob::Singleton<moob::Logger>::GetInstance();
+using MLOG = moob::Logger;
+// moob::Logger* MLOG::instance_ = nullptr;
+// auto MLOG = moob::Singleton<moob::Logger>::GetInstance();

@@ -24,7 +24,7 @@ namespace moob
 
     private:
         Singleton() {};
-        ~Singleton() {};
+        virtual ~Singleton() = default;
         static T* instance_;
         static std::mutex mutex_;
     };
