@@ -13,7 +13,7 @@
 int main(int argc, char **argv) {
     // MLOG->SetLogLevel(MOOB_LOG_LEVEL);
     // MLOG->Log(1, "hello");
-    MLOG::GetInstance()->Log(1, "hi");
+    // MLOG::GetInstance()->Log(1, "hi");
     
     int ret;
     moob::AppCfg config;
@@ -23,11 +23,11 @@ int main(int argc, char **argv) {
     moob::ThreadMgr threadMgr;
     threadMgr.AddTask([&app]()-> void {
         app.ReanderLoop();
-    });
+    }, 1);
     threadMgr.AddTask([&app]()-> void {
         app.ThreadLoop();
-    });
-    threadMgr.Start(1);
+    }, 2);
+    threadMgr.Start();
 
     app.PlatTick();
     
