@@ -1,7 +1,11 @@
 #include "plat/windows/d2d_app.hpp"
 
-bool moob::D2dApp::CreateMainWindow() {
-    auto func = [this]() -> HWND {
+using namespace moob;
+
+bool D2dApp::CreateMainWindow() 
+{
+    auto func = [this]() -> HWND 
+    {
         return (HWND)GetHwnd();
     };
     d2d_.SetGetHwndFunc(func);
@@ -11,13 +15,21 @@ bool moob::D2dApp::CreateMainWindow() {
     return ret;
 }
 
-int moob::D2dApp::Init() {
+int D2dApp::Init() 
+{
     BaseApp::Init();
     SetRenderer(&d2d_);
     return 1;
 }
 
-LRESULT moob::D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) {
+void D2dApp::Doing()
+{
+    CreateMainWindow();
+    WinApp::Doing();
+}
+
+LRESULT D2dApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) 
+{
     switch (msg)
     {
     case WM_CREATE:

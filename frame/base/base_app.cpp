@@ -23,6 +23,22 @@ int BaseApp::Init()
     return 0;
 }
 
+void BaseApp::Doing()
+{
+    thread_mgr_.AddTask([this]()-> void {
+        ReanderLoop();
+    }, 1);
+    thread_mgr_.AddTask([this]()-> void {
+        ThreadLoop();
+    }, 2);
+    thread_mgr_.Start();
+}
+
+void BaseApp::Final()
+{
+    thread_mgr_.Wait();
+}
+
 bool BaseApp::IsQuit() const 
 {
     return is_quit_;

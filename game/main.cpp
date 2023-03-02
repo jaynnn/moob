@@ -1,7 +1,6 @@
 
 #include "common/config.hpp"
 #include "plat/plat_app.hpp"
-#include "frame/mgr/thread_mgr.hpp"
 
 #ifdef MOOB_LOG_LEVEL
     #include "common/logger.hpp"
@@ -18,20 +17,9 @@ int main(int argc, char **argv) {
     int ret;
     moob::AppCfg config;
     moob::PlatApp app(config);
-    ret = app.Init();
-    app.CreateMainWindow();
-    moob::ThreadMgr threadMgr;
-    threadMgr.AddTask([&app]()-> void {
-        app.ReanderLoop();
-    }, 1);
-    threadMgr.AddTask([&app]()-> void {
-        app.ThreadLoop();
-    }, 2);
-    threadMgr.Start();
-
-    app.PlatTick();
-    
-    threadMgr.Wait();
+    app.Init();
+    app.Doing();
+    app.Final();
 
     return ret;
 }

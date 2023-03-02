@@ -25,6 +25,7 @@
 #include "frame/interface/render_interface.hpp"
 #include "frame/mgr/base_mgr.hpp"
 #include "frame/mgr/pixel_mgr.hpp"
+#include "frame/mgr/thread_mgr.hpp"
 
 namespace moob {
     constexpr uint8_t kMouseBtn = 5;
@@ -47,6 +48,8 @@ namespace moob {
         virtual void PlatTick() = 0;
         void ThreadLoop();
         void ReanderLoop();
+        virtual void Doing();
+        virtual void Final();
 
         int32_t ScreenWidth();
         int32_t ScreenHeight();
@@ -70,6 +73,7 @@ namespace moob {
     private:
         PixelMgr pixelMgr_;
         RenderMgrInterface* renderer_;
+        ThreadMgr thread_mgr_;
     public:
     // ======== managers end  ========
     };

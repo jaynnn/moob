@@ -13,7 +13,8 @@ namespace moob  {
         LRESULT HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam);
         
     public:
-        virtual bool CreateMainWindow();
+        virtual bool CreateMainWindow() final;
         virtual int Init() final;
+        virtual void Doing() final;
     };
 }

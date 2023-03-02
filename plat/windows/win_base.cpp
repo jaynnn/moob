@@ -3,15 +3,26 @@
 
 #include "plat/windows/win_base.hpp"
 
-void moob::WinApp::PlatTick() {
+using namespace moob;
+
+void WinApp::Doing()
+{
+    BaseApp::Doing();
+    PlatTick();
+}
+
+void WinApp::PlatTick() 
+{
     MSG msg = {};
-    while (GetMessage(&msg, nullptr, 0, 0) > 0) {
+    while (GetMessage(&msg, nullptr, 0, 0) > 0) 
+    {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
 }
 
-bool moob::WinApp::CreateMainWindow() {
+bool WinApp::CreateMainWindow() 
+{
     hInstance_ = GetModuleHandle(nullptr);
 
     WNDCLASSEX wcex = {0};
@@ -42,43 +53,54 @@ bool moob::WinApp::CreateMainWindow() {
     return (hwnd_ ? true : false);
 }
 
-HWND moob::WinApp::Window() const {
+HWND WinApp::Window() const 
+{
     return hwnd_; 
 }
 
-void moob::WinApp::OnSize(HWND hwnd, UINT flag, int width, int height) {
+void WinApp::OnSize(HWND hwnd, UINT flag, int width, int height) 
+{
 
 }
 
-LRESULT CALLBACK moob::WinApp::WindowProc(HWND hwnd, UINT msg,
-                                    WPARAM wParam, LPARAM lParam) {
+LRESULT CALLBACK WinApp::WindowProc(HWND hwnd, UINT msg,
+                                    WPARAM wParam, LPARAM lParam) 
+{
     WinApp* pThis = nullptr;
-    if (msg == WM_NCCREATE) {
+    if (msg == WM_NCCREATE) 
+    {
         CREATESTRUCT *pCreate = reinterpret_cast<CREATESTRUCT*>(lParam);
         pThis = reinterpret_cast<WinApp*>(pCreate->lpCreateParams);
         SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)pThis);
         pThis->hwnd_ = hwnd;
-    } else {
+    } else 
+    {
         pThis = reinterpret_cast<WinApp*>(
             GetWindowLongPtr(hwnd, GWLP_USERDATA));
     }
 
-    if (pThis) {
+    if (pThis) 
+    {
         return pThis->HandleMessage(msg, wParam, lParam);
-    } else {
+    } else 
+    {
         return DefWindowProc(hwnd, msg, wParam, lParam);
     }
 }
 
-LRESULT moob::WinApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) {
-    switch (msg) {
-    case WM_SIZE: {
+LRESULT WinApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) 
+{
+    switch (msg) 
+    {
+    case WM_SIZE: 
+        {
             int width = LOWORD(lParam);
             int height = HIWORD(lParam);
             OnSize(hwnd_, (UINT)wParam, width, height);
         }
         break;
-    case WM_PAINT: {
+    case WM_PAINT: 
+        {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hwnd_, &ps);
             FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+10));
@@ -86,7 +108,8 @@ LRESULT moob::WinApp::HandleMessage(UINT msg, WPARAM wParam, LPARAM lParam) {
         }
         break;
     case WM_CLOSE:
-        if (MessageBox(hwnd_, "Really quit?", "My application", MB_OKCANCEL) == IDOK) {
+        if (MessageBox(hwnd_, "Really quit?", "My application", MB_OKCANCEL) == IDOK) 
+        {
             DestroyWindow(hwnd_);
         }
         return 0;

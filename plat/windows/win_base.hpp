@@ -17,6 +17,7 @@ namespace moob {
         void PlatTick();
         bool CreateMainWindow() override;
         void* GetHwnd() { return hwnd_; };
+        virtual void Doing() override;
         
     protected:
         virtual LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam) = 0;
