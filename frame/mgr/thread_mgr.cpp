@@ -40,7 +40,6 @@ void ThreadMgr::Run(int group)
     } 
 }
 
-int ThreadMgr::Init()
+void ThreadMgr::Init()
 {
-    return 1;
 }

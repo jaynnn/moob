@@ -39,7 +39,7 @@ namespace moob {
         void OnResize();
 
         // virtual void CreatDevice() final;
-        virtual int Init() final;
+        virtual void Init() final;
         virtual void Tick() final;
         virtual void Draw(int32_t x, int32_t, Pixel pixel) final;
         

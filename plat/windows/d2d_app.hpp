@@ -14,7 +14,7 @@ namespace moob  {
         
     public:
         virtual bool CreateMainWindow() final;
-        virtual int Init() final;
+        virtual void Init() final;
         virtual void Doing() final;
     };
 }

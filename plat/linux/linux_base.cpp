@@ -1,13 +1,13 @@
 #include "plat/linux/linux_base.hpp"
 
+using namespace moob;
 
-int moob::LinuxApp::Init() {
-   return 0;
+void LinuxApp::Init() {
 }
-void moob::LinuxApp::Tick() {
+void LinuxApp::Tick() {
 
 }
-bool moob::LinuxApp::CreateMainWindow() {
+bool LinuxApp::CreateMainWindow() {
 
    display_ = XOpenDisplay(nullptr);
  

@@ -15,11 +15,10 @@ bool D2dApp::CreateMainWindow()
     return ret;
 }
 
-int D2dApp::Init() 
+void D2dApp::Init() 
 {
     BaseApp::Init();
     SetRenderer(&d2d_);
-    return 1;
 }
 
 void D2dApp::Doing()

@@ -6,7 +6,7 @@ BaseApp::~BaseApp()
 {
 }
 
-int BaseApp::Init() 
+void BaseApp::Init() 
 {
     // regist mgr
     RegistMgrT<PixelMgr>(&pixelMgr_);
@@ -19,8 +19,6 @@ int BaseApp::Init()
     {
         (*it)->SetRenderFunc(func);
     }
-
-    return 0;
 }
 
 void BaseApp::Doing()

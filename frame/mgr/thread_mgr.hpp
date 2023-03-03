@@ -16,7 +16,7 @@ namespace moob {
             void AddTask(std::function<void()> task, int group = 1, int threa_num = 1);
             void Start();
             void Wait();
-            int Init();
+            void Init();
         private: 
             void Run(int group);
         private: 

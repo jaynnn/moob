@@ -10,7 +10,7 @@ namespace moob {
         
     public:
         virtual ~RenderMgrInterface() = default;
-        virtual int Init() = 0;
+        virtual void Init() = 0;
         virtual void Tick() = 0;
         virtual void Draw(int32_t x, int32_t, Pixel pixel) = 0;
     };

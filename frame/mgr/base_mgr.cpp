@@ -6,7 +6,6 @@ void BaseMgr::Tick()
 {
 }
 
-int BaseMgr::Init() 
+void BaseMgr::Init() 
 {
-	return 1;
 }

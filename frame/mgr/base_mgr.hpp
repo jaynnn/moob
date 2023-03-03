@@ -9,7 +9,7 @@ namespace moob {
     private:
         std::function<RenderMgrInterface* ()> renderFunc_;
     public:
-        virtual int Init();
+        virtual void Init();
         virtual void Tick();
         virtual void SetRenderFunc(std::function<RenderMgrInterface* ()> func) {
             renderFunc_ = func;

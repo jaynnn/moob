@@ -10,7 +10,7 @@ namespace moob {
     private:
     public:
         virtual void Tick() final;
-        virtual int Init() final;
+        virtual void Init() final;
         void Draw(Pixel p);
     };
 }

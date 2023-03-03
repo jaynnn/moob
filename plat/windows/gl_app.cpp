@@ -2,8 +2,8 @@
 
 using namespace moob;
 
-int GlApp::Init() {
-    return 0;
+void GlApp::Init() 
+{
 }
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) 

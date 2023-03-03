@@ -20,7 +20,7 @@ namespace moob {
         
     public:
         using BaseApp::BaseApp;
-        int Init() override;
+        void Init() override;
         void Tick() override;
         bool CreateMainWindow() override;
     };

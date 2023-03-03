@@ -11,9 +11,8 @@ void PixelMgr::Tick()
     Draw(p);
 }
 
-int PixelMgr::Init() 
+void PixelMgr::Init() 
 {
-	return 1;
 }
 
 void PixelMgr::Draw(Pixel p)

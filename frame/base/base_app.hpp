@@ -43,7 +43,7 @@ namespace moob {
         [[nodiscard]] bool IsQuit() const override;
 
         bool CreateMainWindow() override { return true; };
-        virtual int Init();
+        virtual void Init();
         virtual void Tick();
         virtual void PlatTick() = 0;
         void ThreadLoop();

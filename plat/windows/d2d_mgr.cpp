@@ -2,7 +2,8 @@
 
 using namespace moob;
 
-template <class T> void SafeRelease(T **ppT) {
+template <class T> void SafeRelease(T **ppT) 
+{
     if (*ppT)
     {
         (*ppT)->Release();
@@ -10,25 +11,29 @@ template <class T> void SafeRelease(T **ppT) {
     }
 }
 
-void D2dMgr::DiscardGraphicsResources() {
+void D2dMgr::DiscardGraphicsResources()
+ {
     SafeRelease(&pRender_target_);
     SafeRelease(&pBrush_);
 }
 
-void D2dMgr::OnDestory() {
+void D2dMgr::OnDestory() 
+{
     DiscardGraphicsResources();
     SafeRelease(&pFactory_);
     PostQuitMessage(0);
 }
 
-bool D2dMgr::OnCreatFactory() {
+bool D2dMgr::OnCreatFactory() 
+{
     HRESULT ret = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &pFactory_);
     if (FAILED(ret))
         return false;
     return true;
 }
 
-HRESULT D2dMgr::CreateGraphicsResources() {
+HRESULT D2dMgr::CreateGraphicsResources() 
+{
     HWND hwnd = GetHwnd();
     HRESULT hr = S_OK;
     if (pRender_target_ == nullptr)
@@ -54,19 +59,23 @@ HRESULT D2dMgr::CreateGraphicsResources() {
     return hr;
 }
 
-void D2dMgr::OnResize() {
+void D2dMgr::OnResize() 
+{
 }
 
-void D2dMgr::Draw(int32_t x, int32_t, Pixel pixel) {
+void D2dMgr::Draw(int32_t x, int32_t, Pixel pixel) 
+{
 
 }
 
-int D2dMgr::Init() {
-    return 1;
+void D2dMgr::Init() 
+{
 }
 
-void D2dMgr::Tick() {
-    if (pFactory_ != nullptr) {
+void D2dMgr::Tick() 
+{
+    if (pFactory_ != nullptr) 
+    {
         HRESULT hr = CreateGraphicsResources();
         HWND hwnd = GetHwnd();
         if (SUCCEEDED(hr))

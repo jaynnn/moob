@@ -6,15 +6,13 @@
 #include "frame/util/pipe.hpp"
 
 namespace moob {
+    template <typename T>
     class PipeMgr : public MgrInterface
     {
     private:
-        // template <typename T>
-        // std::map<uint32_t, Pipe<T>> piles_; 
     public:
         PipeMgr();
-        PipeMgr(uint32_t count);
         ~PipeMgr();
-        virtual int Init();
+        virtual void Init();
     };
 }
