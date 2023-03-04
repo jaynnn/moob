@@ -2,9 +2,13 @@
 
 #include <queue>
 
-namespace moob {
+#include "frame/interface/data_interface.hpp"
+
+namespace moob 
+{
     template <typename T>
-    class Pipe {
+    class Pipe
+    {
         virtual ~Pipe() = default;
     public:
         void Push(const T x);

@@ -3,17 +3,14 @@
 
 using namespace moob;
 
-template <typename T>
-PipeMgr<T>::PipeMgr()
+PipeMgr::PipeMgr()
 {
 }
 
-template <typename T>
-PipeMgr<T>::~PipeMgr()
+PipeMgr::~PipeMgr()
 {
 }
 
-template <typename T>
-void PipeMgr<T>::Init()
+void PipeMgr::Init()
 {
 }

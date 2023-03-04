@@ -6,13 +6,13 @@
 #include "frame/util/pipe.hpp"
 
 namespace moob {
-    template <typename T>
     class PipeMgr : public MgrInterface
     {
     private:
     public:
         PipeMgr();
         ~PipeMgr();
+        int CreateDrawI();
         virtual void Init();
     };
 }

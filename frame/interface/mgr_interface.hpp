@@ -3,11 +3,14 @@
 #include <iostream>
 #include <functional>
 
-class MgrInterface
+namespace moob
 {
-private:
-    
-public:
-    virtual ~MgrInterface() = default;
-    virtual void Init() = 0;
-};
+    class MgrInterface
+    {
+    private:
+        
+    public:
+        virtual ~MgrInterface() = default;
+        virtual void Init() = 0;
+    };
+}
