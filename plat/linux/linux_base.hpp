@@ -5,7 +5,8 @@
 
 #include "frame/base/base_app.hpp"
 
-namespace moob {
+namespace moob 
+{
     class LinuxApp : public BaseApp
     {
     private:

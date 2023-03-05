@@ -4,7 +4,8 @@
 
 #include "frame/base/base_app.hpp"
 
-namespace moob {
+namespace moob 
+{
     class WinApp : public BaseApp
     {
     private:

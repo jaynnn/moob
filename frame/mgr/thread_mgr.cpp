@@ -13,7 +13,8 @@ void ThreadMgr::AddTask(std::function<void()> task, int group, int threa_num)
 //启动线程池，开始执行任务
 void ThreadMgr::Start()
 {
-    for (const auto& [group, threa_num] : group2thread_num_) {
+    for (const auto& [group, threa_num] : group2thread_num_) 
+    {
         for (int i = 0; i <threa_num; i++)
             threads_.push_back(std::thread(&ThreadMgr::Run, this, group));
     }

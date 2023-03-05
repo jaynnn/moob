@@ -4,7 +4,8 @@
 
 #include "common/pos_struct.hpp"
 
-namespace moob {
+namespace moob 
+{
     class Camera
     {
     private:

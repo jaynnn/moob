@@ -7,7 +7,8 @@
 #include "frame/interface/mgr_interface.hpp"
 
 //线程管理类
-namespace moob {
+namespace moob 
+{
     class ThreadMgr : MgrInterface
     { 
         public: 

@@ -5,7 +5,8 @@
 #include "frame/interface/mgr_interface.hpp"
 #include "frame/util/pipe.hpp"
 
-namespace moob {
+namespace moob 
+{
     class PipeMgr : public MgrInterface
     {
     private:

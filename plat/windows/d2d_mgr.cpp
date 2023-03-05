@@ -97,7 +97,8 @@ void D2dMgr::Tick()
     }
 }
 
-void D2dMgr::ExplanDrawFlow() {
+void D2dMgr::ExplanDrawFlow() 
+{
     D2D1_RECT_F rectangle = D2D1::Rect(438.0f, 301.5f, 498.0f, 361.5f);
     pRender_target_->DrawRectangle(rectangle, pBrush_, 1.0f);
     pRender_target_->FillRectangle(rectangle, pStroke_);

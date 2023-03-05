@@ -5,7 +5,8 @@
 #include "frame/base/sprite.hpp"
 #include "common/pos_struct.hpp"
 
-namespace moob {
+namespace moob 
+{
     constexpr uint32_t kDefaultAlpha = 0xFF;
     constexpr uint32_t kDefaultRgba = (kDefaultAlpha << 24);
 

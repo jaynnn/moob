@@ -2,7 +2,8 @@
 
 #include "common/config.hpp"
 
-namespace moob {
+namespace moob 
+{
     class AppInterface
     {
     private:

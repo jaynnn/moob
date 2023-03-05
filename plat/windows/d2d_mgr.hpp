@@ -8,7 +8,8 @@
 #include "frame/interface/render_interface.hpp"
 #include "common/draw_struct.hpp"
 
-namespace moob {
+namespace moob 
+{
     class D2dMgr : public RenderMgrInterface
     {
     private:

@@ -3,7 +3,8 @@
 #include "frame/interface/mgr_interface.hpp"
 #include "frame/base/pixel.hpp"
 
-namespace moob {
+namespace moob 
+{
     class RenderMgrInterface : public MgrInterface
     {
     private:

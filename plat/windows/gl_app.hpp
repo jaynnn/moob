@@ -6,7 +6,8 @@
 #include "third/windows/include/glad/glad.h"
 #include "third/windows/include/glfw/glfw3.h"
 
-namespace moob  {
+namespace moob  
+{
     class GlApp
     {
     private:

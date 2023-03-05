@@ -3,7 +3,8 @@
 
 #include "frame/interface/render_interface.hpp"
 
-namespace moob {
+namespace moob 
+{
     class BaseMgr : public MgrInterface
     {
     private:
@@ -11,7 +12,8 @@ namespace moob {
     public:
         virtual void Init();
         virtual void Tick();
-        virtual void SetRenderFunc(std::function<RenderMgrInterface* ()> func) {
+        virtual void SetRenderFunc(std::function<RenderMgrInterface* ()> func) 
+        {
             renderFunc_ = func;
         };
     };

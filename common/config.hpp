@@ -2,7 +2,8 @@
 
 #include <iostream>
 
-namespace moob {
+namespace moob 
+{
     struct AppCfg
     {
         explicit AppCfg(

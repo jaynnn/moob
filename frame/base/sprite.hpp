@@ -4,8 +4,10 @@
 
 #include "common/pos_struct.hpp"
 
-namespace moob {
-    class Sprite {
+namespace moob 
+{
+    class Sprite 
+    {
     protected:
         moob::Pos pos_ = {0};
     public:

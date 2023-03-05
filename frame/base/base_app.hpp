@@ -27,7 +27,8 @@
 #include "frame/mgr/pixel_mgr.hpp"
 #include "frame/mgr/thread_mgr.hpp"
 
-namespace moob {
+namespace moob 
+{
     constexpr uint8_t kMouseBtn = 5;
     constexpr size_t kMaxVertex = 128;
     constexpr int FAIL = 0;

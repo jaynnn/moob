@@ -4,8 +4,10 @@
 
 #include "common/pos_struct.hpp"
 
-namespace moob {
-    enum DrawI {
+namespace moob 
+{
+    enum DrawI 
+    {
         PIXEL,
         LINE,
         TRANGLE,

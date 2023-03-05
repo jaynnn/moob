@@ -4,7 +4,8 @@
 #include "plat/@PLAT_INCLUDE_NAME@"
 
 #define MOOB_LOG_LEVEL @LOG_LEVEL@
-namespace moob {
+namespace moob 
+{
     using PlatApp = @PLAT_APP_CLASS@;
     using RendererMgr = @RENDERER_CLASS@;
 }

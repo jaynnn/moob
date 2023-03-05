@@ -23,10 +23,12 @@ void BaseApp::Init()
 
 void BaseApp::Doing()
 {
-    thread_mgr_.AddTask([this]()-> void {
+    thread_mgr_.AddTask([this]()-> void 
+    {
         ReanderLoop();
     }, 1);
-    thread_mgr_.AddTask([this]()-> void {
+    thread_mgr_.AddTask([this]()-> void 
+    {
         ThreadLoop();
     }, 2);
     thread_mgr_.Start();

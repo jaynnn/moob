@@ -2,12 +2,15 @@
 
 using namespace moob;
 
-void LinuxApp::Init() {
+void LinuxApp::Init() 
+{
 }
-void LinuxApp::Tick() {
+void LinuxApp::Tick() 
+{
 
 }
-bool LinuxApp::CreateMainWindow() {
+bool LinuxApp::CreateMainWindow() 
+{
 
    display_ = XOpenDisplay(nullptr);
  
@@ -17,9 +20,11 @@ bool LinuxApp::CreateMainWindow() {
    XSelectInput(display_, window_, ExposureMask | KeyPressMask);
    XMapWindow(display_, window_);
  
-   while (1) {
+   while (1) 
+   {
       XNextEvent(display_, &event_);
-      if (event_.type == Expose) {
+      if (event_.type == Expose) 
+      {
          XFillRectangle(display_, window_, DefaultGC(display_, screen_), 20, 20, 10, 10);
          XDrawString(display_, window_, DefaultGC(display_, screen_), 10, 50, msg_, strlen(msg_));
       }

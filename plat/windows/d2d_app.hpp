@@ -3,7 +3,8 @@
 #include "plat/windows/win_base.hpp"
 #include "plat/windows/d2d_mgr.hpp"
 
-namespace moob  {
+namespace moob  
+{
     class D2dApp : public WinApp
     {
     using WinApp::WinApp;

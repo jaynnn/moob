@@ -4,7 +4,8 @@
 #include "frame/base/pixel.hpp"
 #include "common/draw_struct.hpp"
 
-namespace moob {
+namespace moob 
+{
     class PixelMgr : public BaseMgr
     {
     private:
