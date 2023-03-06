@@ -22,3 +22,13 @@ moob 的基础框架是:
     b. 需要一个中间模块支持，管道的设计有待考究  
     c. 演化器由gpu 或 cpu 计算，在gpu中计算会更合理一些，毕竟像素的演化应该是并行处理的  
 由于一定会有背景的需求，因此该基础组合结构必须是可以多次构建的  
+
+启动:
+./moob -m[mode]
+-m 指定启动模式:
+    // 0.(client combo) + (server combo) + (pixel logic commbo)
+    // 1.(client combo)
+    // 2.(root server combo)
+    // 3.(pixel logic commbo)
+    // 4.(root server combo) + (pixel logic commbo)
+    

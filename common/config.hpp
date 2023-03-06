@@ -6,6 +6,7 @@ namespace moob
 {
     class AppCfg
     {
+    public:
         explicit AppCfg(
             uint32_t screen_w = 800, uint32_t screen_h = 600,
             uint32_t pixel_w = 4, uint32_t pixel_h = 4,
@@ -26,24 +27,27 @@ namespace moob
         uint32_t rgba_;
         const char *appname_;
 
-        //       0        -       0        -         0            - 0 - 0 - 0 - 0 - 0
-        // (client combo) - (server combo) - (pixel logic commbo)
-        unsigned char engin_mode_; 
+        // 0.(client combo) + (server combo) + (pixel logic commbo)
+        // 1.(client combo)
+        // 2.(root server combo)
+        // 3.(pixel logic commbo)
+        // 4.(root server combo) + (pixel logic commbo)
+        unsigned char engin_mode_ = 0; 
 
-        uint32_t CollectArgs(int argc, const char** argv)
+        void CollectArgs(int argc, char** argv)
         {
-            int args = 0;
             for (int i = 0; argv[i] != nullptr; i++) {
                 if (argv[i][0] != '-')
-                    return args;
+                    return;
                 switch (argv[i][1])
                 {
                     case 'm':
-                        if (argv[i][2] == '\0')
-                            return args;
+                        if (argv[i][2] == '\0' ||
+                                argv[i][2] < 48 || argv[i][2] > 57)
+                            return;
+                    engin_mode_ = argv[i][2] - '0';
                 }
             }
         }
-        
     };
 }

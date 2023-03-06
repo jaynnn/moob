@@ -9,7 +9,7 @@
     #define MLOG.SetLogLevel(x) ((void)x)
 #endif
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
     // MLOG->SetLogLevel(MOOB_LOG_LEVEL);
     // MLOG->Log(1, "hello");
@@ -17,6 +17,7 @@ int main(int argc, char **argv)
     
     int ret;
     moob::AppCfg config;
+    config.CollectArgs(argc, argv);
     moob::PlatApp app(config);
     app.Init();
     app.Doing();

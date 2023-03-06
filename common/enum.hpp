@@ -7,5 +7,5 @@ namespace moob
         CLIENT = 256,
         SERVER = 128,
         LOGIC  = 64,
-    }
+    };
 } // namespace moob
