@@ -24,11 +24,11 @@ moob 的基础框架是:
 由于一定会有背景的需求，因此该基础组合结构必须是可以多次构建的  
 
 启动:
-./moob -m[mode]
--m 指定启动模式:
-    // 0.(client combo) + (server combo) + (pixel logic commbo)
-    // 1.(client combo)
-    // 2.(root server combo)
-    // 3.(pixel logic commbo)
-    // 4.(root server combo) + (pixel logic commbo)
+./moob -m[mode]  
+-m 指定启动模式:  
+    // 0.(client combo) + (server combo) + (pixel logic commbo)  
+    // 1.(client combo)  
+    // 2.(root server combo)  
+    // 3.(pixel logic commbo)  
+    // 4.(root server combo) + (pixel logic commbo)  
     
