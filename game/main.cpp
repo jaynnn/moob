@@ -9,7 +9,7 @@
     #define MLOG.SetLogLevel(x) ((void)x)
 #endif
 
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
     // MLOG->SetLogLevel(MOOB_LOG_LEVEL);
     // MLOG->Log(1, "hello");

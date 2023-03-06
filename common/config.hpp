@@ -4,7 +4,7 @@
 
 namespace moob 
 {
-    struct AppCfg
+    class AppCfg
     {
         explicit AppCfg(
             uint32_t screen_w = 800, uint32_t screen_h = 600,
@@ -25,5 +25,25 @@ namespace moob
         uint32_t pixel_h_;
         uint32_t rgba_;
         const char *appname_;
+
+        //       0        -       0        -         0            - 0 - 0 - 0 - 0 - 0
+        // (client combo) - (server combo) - (pixel logic commbo)
+        unsigned char engin_mode_; 
+
+        uint32_t CollectArgs(int argc, const char** argv)
+        {
+            int args = 0;
+            for (int i = 0; argv[i] != nullptr; i++) {
+                if (argv[i][0] != '-')
+                    return args;
+                switch (argv[i][1])
+                {
+                    case 'm':
+                        if (argv[i][2] == '\0')
+                            return args;
+                }
+            }
+        }
+        
     };
 }
