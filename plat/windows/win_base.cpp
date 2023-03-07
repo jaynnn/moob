@@ -8,7 +8,12 @@ using namespace moob;
 void WinApp::Doing()
 {
     BaseApp::Doing();
-    PlatTick();
+    BaseApp::EngineModeCb(moob::EngineMode::CLIENT,
+        [this]() -> void
+        {
+            PlatTick();
+        }
+    );
 }
 
 void WinApp::PlatTick() 

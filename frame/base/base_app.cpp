@@ -80,16 +80,6 @@ void BaseApp::ThreadEnd()
     
 }
 
-int32_t BaseApp::ScreenWidth() 
-{
-    return app_config_.screen_w_;
-}
-
-int32_t BaseApp::ScreenHeight() 
-{
-    return app_config_.screen_h_;
-}
-
 template <typename T>
 void BaseApp::RegistMgrT(T *mgr) 
 {
@@ -105,3 +95,23 @@ RenderMgrInterface* BaseApp::GetRenderer()
 {
     return renderer_;
 }
+
+/* ============== config start ============== */
+int32_t BaseApp::ScreenWidth() 
+{
+    return app_config_.screen_w_;
+}
+
+int32_t BaseApp::ScreenHeight() 
+{
+    return app_config_.screen_h_;
+}
+
+void BaseApp::EngineModeCb(uint32_t mode, std::function<void()> cb)
+{
+    if (app_config_.engine_mode_ & mode)
+    {
+        cb();
+    }
+}
+/* ============== config end  ============== */

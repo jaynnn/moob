@@ -4,8 +4,8 @@ namespace moob
 {
     enum EngineMode
     {
-        CLIENT = 256,
-        SERVER = 128,
-        LOGIC  = 64,
+        CLIENT = 1,
+        SERVER = 2,
+        LOGIC  = 4,
     };
 } // namespace moob

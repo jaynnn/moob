@@ -15,15 +15,20 @@ bool D2dApp::CreateMainWindow()
     return ret;
 }
 
-void D2dApp::Init() 
+void D2dApp::Init()
 {
     BaseApp::Init();
-    SetRenderer(&d2d_);
+    BaseApp::EngineModeCb(moob::EngineMode::CLIENT,
+        [this]() -> void
+        {
+            CreateMainWindow();
+            SetRenderer(&d2d_);
+        }
+    );
 }
 
 void D2dApp::Doing()
 {
-    CreateMainWindow();
     WinApp::Doing();
 }
 

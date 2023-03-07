@@ -19,6 +19,7 @@
 #include <cstring>
 #include <filesystem>
 
+#include "common/enum.hpp"
 #include "common/draw_struct.hpp"
 #include "frame/interface/app_interface.hpp"
 #include "frame/interface/mgr_interface.hpp"
@@ -52,8 +53,11 @@ namespace moob
         virtual void Doing();
         virtual void Final();
 
+/* ============== config start ============== */
         int32_t ScreenWidth();
         int32_t ScreenHeight();
+        void EngineModeCb(uint32_t mode, std::function<void()> cb);
+/* ============== config end  ============== */
 
     protected:
         AppCfg app_config_;

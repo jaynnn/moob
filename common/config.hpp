@@ -27,16 +27,15 @@ namespace moob
         uint32_t rgba_;
         const char *appname_;
 
-        // 0.(client combo) + (server combo) + (pixel logic commbo)
         // 1.(client combo)
         // 2.(root server combo)
-        // 3.(pixel logic commbo)
-        // 4.(root server combo) + (pixel logic commbo)
-        unsigned char engin_mode_ = 0; 
+        // 4.(pixel logic commbo)
+        // (client combo) + (root server combo) + (pixel logic commbo) = 7
+        uint32_t engine_mode_ = 0;
 
         void CollectArgs(int argc, char** argv)
         {
-            for (int i = 0; argv[i] != nullptr; i++) {
+            for (int i = 1; argv[i] != nullptr; i++) {
                 if (argv[i][0] != '-')
                     return;
                 switch (argv[i][1])
@@ -45,7 +44,8 @@ namespace moob
                         if (argv[i][2] == '\0' ||
                                 argv[i][2] < 48 || argv[i][2] > 57)
                             return;
-                    engin_mode_ = argv[i][2] - '0';
+                    engine_mode_ = (argv[i][2] - '0') | engine_mode_;
+                    std::cout << "engine mode: " <<  engine_mode_ << std::endl;
                 }
             }
         }
