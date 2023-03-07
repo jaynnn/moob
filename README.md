@@ -26,9 +26,8 @@ moob 的基础框架是:
 启动:
 ./moob -m[mode]  
 -m 指定启动模式:  
-    // 0.(client combo) + (server combo) + (pixel logic commbo)  
-    // 1.(client combo)  
-    // 2.(root server combo)  
-    // 3.(pixel logic commbo)  
-    // 4.(root server combo) + (pixel logic commbo)  
+        // 1.(client combo)  
+        // 2.(root server combo)  
+        // 4.(pixel logic commbo)  
+        // (client combo) + (root server combo) + (pixel logic commbo) = 7  
     

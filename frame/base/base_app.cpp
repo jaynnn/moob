@@ -11,23 +11,33 @@ void BaseApp::Init()
     // regist mgr
     RegistMgrT<PixelMgr>(&pixelMgr_);
 
-    auto func = [this] () -> RenderMgrInterface* 
-    {
-        return (RenderMgrInterface*)GetRenderer();
-    };
-    for (auto it = begin(mgrs_); it != end(mgrs_); it++) 
-    {
-        (*it)->SetRenderFunc(func);
-    }
+    BaseApp::EngineModeCb(moob::EngineMode::CLIENT,
+        [this]() -> void
+        {
+            auto func = [=] () -> RenderMgrInterface* 
+            {
+                return (RenderMgrInterface*)GetRenderer();
+            };
+            for (auto it = begin(mgrs_); it != end(mgrs_); it++) 
+            {
+                (*it)->SetRenderFunc(func);
+            }
+        }
+    );
 }
 
 void BaseApp::Doing()
 {
-    thread_mgr_.AddTask([this]()-> void 
-    {
-        ReanderLoop();
-    }, 1);
-    thread_mgr_.AddTask([this]()-> void 
+    BaseApp::EngineModeCb(moob::EngineMode::CLIENT,
+        [this]() -> void
+        {
+            thread_mgr_.AddTask([this]()-> void
+            {
+                ReanderLoop();
+            }, 1);
+        }
+    );
+    thread_mgr_.AddTask([this]()-> void
     {
         ThreadLoop();
     }, 2);
