@@ -19,6 +19,7 @@
 #include <cstring>
 #include <filesystem>
 
+#include "common/utils.hpp"
 #include "common/enum.hpp"
 #include "common/draw_struct.hpp"
 #include "frame/interface/app_interface.hpp"
@@ -57,6 +58,7 @@ namespace moob
         int32_t ScreenWidth();
         int32_t ScreenHeight();
         void EngineModeCb(uint32_t mode, std::function<void()> cb);
+        void EngineModeRelease(uint32_t mode, std::function<void()> cb);
 /* ============== config end  ============== */
 
     protected:

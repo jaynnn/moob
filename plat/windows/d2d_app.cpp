@@ -25,6 +25,13 @@ void D2dApp::Init()
             SetRenderer(&d2d_);
         }
     );
+
+    BaseApp::EngineModeRelease(moob::EngineMode::CLIENT,
+        [this]() -> void
+        {
+            delete &d2d_;
+        }
+    );
 }
 
 void D2dApp::Doing()
