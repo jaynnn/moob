@@ -33,7 +33,7 @@ void BaseApp::Doing()
         {
             thread_mgr_.AddTask([this]()-> void
             {
-                ReanderLoop();
+                ReanderLoop(); 
             }, 1);
         }
     );
@@ -120,6 +120,14 @@ int32_t BaseApp::ScreenHeight()
 void BaseApp::EngineModeCb(uint32_t mode, std::function<void()> cb)
 {
     if (app_config_.engine_mode_ & mode)
+    {
+        cb();
+    }
+}
+
+void BaseApp::EngineModeRelease(uint32_t mode, std::function<void()> cb)
+{
+    if (!(app_config_.engine_mode_ & mode))
     {
         cb();
     }
