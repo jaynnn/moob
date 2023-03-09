@@ -33,7 +33,7 @@ void BaseApp::Doing()
         {
             thread_mgr_.AddTask([this]()-> void
             {
-                ReanderLoop(); 
+                ReanderLoop();
             }, 1);
         }
     );

@@ -83,16 +83,18 @@ void D2dMgr::Tick()
             PAINTSTRUCT ps;
             BeginPaint(hwnd, &ps);
 
-            pRender_target_->BeginDraw();
+            if (pRender_target_ != nullptr) {
+                pRender_target_->BeginDraw();
 
-            ExplanDrawFlow();
+                ExplanDrawFlow();
 
-            hr = pRender_target_->EndDraw();
-            if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
-            {
-                DiscardGraphicsResources();
+                hr = pRender_target_->EndDraw();
+                if (FAILED(hr) || hr == D2DERR_RECREATE_TARGET)
+                {
+                    DiscardGraphicsResources();
+                }
+                EndPaint(hwnd, &ps);
             }
-            EndPaint(hwnd, &ps);
         }
     }
 }

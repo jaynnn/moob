@@ -8,15 +8,8 @@ namespace moob
         
     public:
         ComboMgr();
+        ComboMgr(int type);
         ~ComboMgr();
     };
-    
-    ComboMgr::ComboMgr()
-    {
-    }
-    
-    ComboMgr::~ComboMgr()
-    {
-    }
     
 }
