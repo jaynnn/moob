@@ -12,8 +12,9 @@ ComboMgr::~ComboMgr()
 {
 }
 
-ComboMgr::ComboMgr(int type)
+ComboMgr::ComboMgr(int type, const Combo &combo)
 {
+    type2Combos_[type].push_back(combo);
     switch (type)
     {
     case 1:
